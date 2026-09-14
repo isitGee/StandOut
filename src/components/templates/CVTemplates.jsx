@@ -522,7 +522,7 @@ export function StudentCV({ cv }) {
         {p.summary && (
           <section className="cv-section">
             <div className="cv-sec-title">About</div>
-            <p style={{ fontSize:"9.5pt", color:"#334155", lineHeight:1.65, background:"#f8fafc", border:"1px solid #e2e8f0", borderRadius:10, padding:"10px 12px" }}>{p.summary}</p>
+            <p style={{ fontSize:"9.5pt", color:"#292524", lineHeight:1.65, background:"#fdfcfa", border:"1px solid #e7e0d6", borderRadius:10, padding:"10px 12px" }}>{p.summary}</p>
           </section>
         )}
         {orderedSectionsFor(cv).map(k=> renderClassicSection(k,cv))}

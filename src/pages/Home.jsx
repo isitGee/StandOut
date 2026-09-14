@@ -123,14 +123,14 @@ export function Home() {
               { name:"Professional Photo", tag:"Photo", desc:"Optional photo, balanced layout." },
             ].map(t=> (
               <div key={t.name} className="template-card">
-                <div className="template-thumb" style={{ padding:"10px" }}>
-                  <div style={{ height:"100%", border:"1px solid #eef1f4", borderRadius:8, background:"#fff", padding:"10px", display:"grid", gap:8 }}>
-                    <div style={{ height:10, width:"45%", background:"#0f172a", borderRadius:999 }} />
-                    <div style={{ height:6, width:"30%", background:"#94a3b8", borderRadius:999 }} />
-                    <div style={{ height:1, background:"#e2e8f0" }} />
+                <div className="template-thumb" style={{ padding:"12px" }}>
+                  <div style={{ height:"100%", border:"1px solid #e7e0d6", borderRadius:10, background:"#fff", padding:"12px", display:"grid", gap:8, boxShadow:"0 2px 10px rgba(28,25,23,0.06)" }}>
+                    <div style={{ height:10, width:"45%", background:"#1c1917", borderRadius:999 }} />
+                    <div style={{ height:6, width:"30%", background:"#a8a29e", borderRadius:999 }} />
+                    <div style={{ height:1, background:"#e7e0d6" }} />
                     <div style={{ display:"grid", gap:6 }}>
-                      <div style={{ height:6, width:"28%", background:"#0f172a", borderRadius:999, opacity:0.8 }} />
-                      {Array.from({length:3}).map((_,i)=> <div key={i} style={{ height:5, background:"#e2e8f0", borderRadius:999, width: 70 - i*8 + "%" }} />)}
+                      <div style={{ height:6, width:"28%", background:"#1c1917", borderRadius:999, opacity:0.85 }} />
+                      {Array.from({length:3}).map((_,i)=> <div key={i} style={{ height:5, background:"#e7e0d6", borderRadius:999, width: 70 - i*8 + "%" }} />)}
                     </div>
                   </div>
                 </div>

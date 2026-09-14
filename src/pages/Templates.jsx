@@ -11,16 +11,16 @@ export function Templates() {
       <div className="template-grid" style={{ marginTop:"1.5rem" }}>
         {templates.map(t=> (
           <div key={t.id} className="template-card">
-            <div className="template-thumb" style={{ background:"#f8fafc", display:"grid", placeItems:"center", padding:"1rem" }}>
-              <div style={{ width:"78%", aspectRatio:"210/297", background:"#fff", border:"1px solid #e2e8f0", borderRadius:8, boxShadow:"0 6px 20px rgba(15,36,57,0.08)", padding:"12px", display:"grid", gap:8 }}>
-                <div style={{ height:10, width:"60%", background:"#0f172a", borderRadius:999 }} />
+            <div className="template-thumb" style={{ background:"#fdfcfa", display:"grid", placeItems:"center", padding:"1.1rem" }}>
+              <div style={{ width:"78%", aspectRatio:"210/297", background:"#fff", border:"1px solid #e7e0d6", borderRadius:10, boxShadow:"0 6px 20px rgba(28,25,23,0.08)", padding:"12px", display:"grid", gap:8 }}>
+                <div style={{ height:10, width:"60%", background:"#1c1917", borderRadius:999 }} />
                 <div style={{ height:6, width:"40%", background:t.accent, borderRadius:999, opacity:0.9 }} />
-                <div style={{ height:1, background:"#e2e8f0" }} />
+                <div style={{ height:1, background:"#e7e0d6" }} />
                 {Array.from({length:4}).map((_,i)=> (
                   <div key={i} style={{ display:"grid", gap:4 }}>
-                    <div style={{ height:6, width: 38 - i*4 + "%", background:"#0f172a", borderRadius:999, opacity:0.85 }} />
-                    <div style={{ height:5, width:"88%", background:"#e2e8f0", borderRadius:999 }} />
-                    <div style={{ height:5, width:"72%", background:"#e2e8f0", borderRadius:999 }} />
+                    <div style={{ height:6, width: 38 - i*4 + "%", background:"#1c1917", borderRadius:999, opacity:0.85 }} />
+                    <div style={{ height:5, width:"88%", background:"#e7e0d6", borderRadius:999 }} />
+                    <div style={{ height:5, width:"72%", background:"#e7e0d6", borderRadius:999 }} />
                   </div>
                 ))}
               </div>

@@ -1,77 +1,76 @@
 # StandOut — DESIGN.md
 
 > Design-system source of truth for StandOut, a guided, privacy-first CV builder.
-> Inspired by the principles reviewed in `awesome-design-md` (semantic tokens, intentional typography, restraint) and by the execution quality of `GeeQR` (privacy-first, client-side, polished micro-interactions, light/dark, a11y, static deploy). This file defines StandOut's **own** visual identity.
+> Inspired by `awesome-design-md` (semantic tokens, restraint), `GeeQR` execution quality (privacy-first, polished, a11y), and the warm editorial clarity of the Manus/Candid reference (soft paper, terracotta accent, generous whitespace). StandOut keeps its **own** ink-navy + warm-stone identity.
 
 ---
 
 ## 1. Product Personality
 
-**Keywords:** trustworthy · calm · precise · approachable · slightly premium
+**Keywords:** trustworthy · warm · editorial · calm · slightly premium
 
-StandOut is a career-critical tool. People trust it with information that affects their income and education. The UI must feel like a serious product, not a marketing toy.
+StandOut is career-critical. The UI must feel like a serious document tool — not a marketing toy, not a cold admin dashboard.
 
-- **Trustworthy over playful.** No giant emojis, no meme copy, no aggressive sales banners.
-- **Calm over loud.** Muted surfaces, generous whitespace, small, confident type. Color is used for meaning, not decoration.
-- **Precise over generic.** Every section label, helper text, and button explains *why* the user is doing this step.
-- **Approachable for beginners, fast for experts.** Both paths coexist without slowing the other down.
+- **Trustworthy over playful.** No giant emojis, no meme copy.
+- **Warm over cold.** Warm stone paper (`#fdfcfa`) instead of cold gray, soft shadows, editorial serif for display. Feels like a well-made paper product.
+- **Calm over loud.** Muted surfaces, generous whitespace, small confident type. Color is for meaning, not decoration.
+- **Precise over generic.** Every label and helper answers *why*.
 
-If GeeQR is “confident utility,” StandOut is “quiet confidence.”
+If GeeQR is “confident utility,” StandOut is “quiet, editorial confidence” — closer to Linear/Notion restraint with a touch of *Candid/Manus* warmth.
 
 ---
 
 ## 2. Brand & Color
 
-### 2.1 Brand Ink
+### 2.1 Brand Ink + Warm Accent
 
-The brand is **ink-navy**, not electric blue. It signals documents, authority, and print quality while remaining warm enough for screens.
+Warm editorial palette — ink for authority, terracotta for humanity (the Manus reference uses a similarly warm, paper-centric palette).
 
-- `--brand: #0f2439`  — primary ink (light theme header actions, links, selected states)
-- `--brand-strong: #0a1c2e` — pressed / emphasis
-- `--brand-soft: #e8eef5` — subtle backgrounds for selected cards
-- `--accent: #b7791f`  — very restrained warm amber for trust badges, publication dots, “recommended” ribbons. Never large fills.
-- `--accent-soft: #fdf6e3`
+- `--brand: #12213a`  — deep ink (links, selected, primary actions)
+- `--brand-strong: #0e1a2e` — pressed
+- `--brand-soft: #eef2f8` — subtle selected fill
+- `--accent: #b65a2a` — restrained terracotta (eyebrow bar, step numeral, creative template bar). Never large fills.
+- `--accent-soft: #fdf0e6`
 
-Dark theme inverts carefully:
-- `--brand: #86b7ff`  (legible on dark surfaces, still “ink” family)
-- `--brand-soft: rgba(134,183,255,0.12)`
+Dark inverts carefully:
+- `--brand: #9bb6ff`
+- `--brand-soft: rgba(155,182,255,0.14)`
 
-### 2.2 Surfaces (Light)
+### 2.2 Surfaces (Light) — warm, not cold
 
-- `--bg: #f6f7f9` — app canvas
-- `--surface: #ffffff` — cards, editor panels
-- `--surface-2: #f1f4f8` — inset areas, empty states
-- `--surface-3: #e9eef3` — dividers that need more weight
-- `--paper: #ffffff` — CV document itself (always light, never themed)
+- `--bg: #fdfcfa` — warm paper app canvas (with subtle radial glow)
+- `--surface: #ffffff` — cards, editor
+- `--surface-2: #f7f3ee` — inset, preview wrap, empty states
+- `--surface-3: #efe9e0` — dividers
+- `--paper: #ffffff` — CV document itself (always light)
 
 ### 2.3 Surfaces (Dark)
 
-- `--bg: #0e141e`
+- `--bg: #0f141b`
 - `--surface: #161e2d`
-- `--surface-2: #1c2a42`
-- `--surface-3: #23324e`
+- `--surface-2: #1c2436`
+- `--surface-3: #222e44`
 
 ### 2.4 Text
 
-- Light: `--text: #0f172a` (slate-900), `--text-2: #475569`, `--text-3: #94a3b8`
+- Light: `--text: #1c1917` (stone 900), `--text-2: #57534e`, `--text-3: #a8a29e`
 - Dark: `--text: #eef2f8`, `--text-2: #a8b3c6`, `--text-3: #7a8599`
 
 ### 2.5 Borders & States
 
-- Light: `--border: #e2e8f0`, `--border-strong: #cbd5e1`
-- Dark: `--border: rgba(255,255,255,0.08)`, `--border-strong: rgba(255,255,255,0.16)`
-- Success: `#0f7a3d`, Warning: `#92400e`, Error: `#be123c`, Info: `#0f2439`
-- Dark variants use softly translucent tints.
+- Light: `--border: #e7e0d6`, `--border-strong: #d6cbb8`, `--border-soft: #f1ebe3`
+- Dark: `--border: rgba(255,255,255,0.08)`, `--border-strong: rgba(255,255,255,0.14)`
+- Success/Warning/Error as before, but warm-tinted rings
+- **Do:** 1px border + soft shadow for elevation
+- **Don't:** heavy drops or neon glows
 
-**Do:** Use border + shadow for elevation.  
-**Don't:** Use heavy drop shadows or neon glows anywhere.
+### 2.6 Shadows — warm, soft
 
-### 2.6 Shadows
-
-- `--shadow-sm: 0 1px 2px rgba(15,36,57,0.06)`
-- `--shadow-md: 0 6px 20px rgba(15,36,57,0.08)`
-- `--shadow-lg: 0 16px 40px rgba(15,36,57,0.12)`
-- Dark shadows use black at 0.4–0.5 opacity.
+- `--shadow-sm: 0 1px 2px rgba(28,25,23,0.06)`
+- `--shadow-md: 0 8px 24px rgba(28,25,23,0.08)`
+- `--shadow-lg: 0 18px 48px rgba(28,25,23,0.12)`
+- `--shadow-paper: 0 2px 12px rgba(28,25,23,0.07), 0 12px 40px rgba(28,25,23,0.10)`
+- Header glass: `rgba(253,252,250,0.88)` with `blur(14px)`
 
 ---
 
@@ -79,131 +78,100 @@ Dark theme inverts carefully:
 
 ### 3.1 Families
 
-- **Sans (UI):** `Inter` — neutral, highly legible at small sizes, excellent for forms. Fallback: `system-ui, -apple-system, Segoe UI, Helvetica, Arial`.
-- **Serif (Display/CV):** `Newsreader` — used *only* for CV document headings and for hero titles. Gives a slight editorial premium without feeling academic.
-- **Mono:** `JetBrains Mono` — for small metadata (dates, locations), never body.
+- **Sans (UI):** `Inter` — forms, body, controls
+- **Serif (Display/CV):** `Newsreader` — hero titles, CV headings, section titles. Editorial premium without academic stiffness.
+- **Mono:** `JetBrains Mono` — dates, locations, metadata only
 
 ### 3.2 Scale
 
-- `--text-xs: 0.75rem`  (12) — labels, captions
-- `--text-sm: 0.875rem` (14) — helper text, inputs
-- `--text-base: 0.9375rem` (15) — body default (slightly smaller than 16 for denser editor)
-- `--text-md: 1rem` (16) — preview body, article
-- `--text-lg: 1.125rem` (18)
-- `--text-xl: 1.375rem` (22) — card titles
-- `--text-2xl: 1.75rem` (28) — section titles
-- `--text-3xl: clamp(2rem, 1.6rem + 2vw, 2.75rem)` — hero
-
-Line-height: `1.55` body, `1.15` headings. Letter-spacing: `-0.015em` for headings.
+- `--text-xs: 0.72rem`, `--text-sm: 0.875rem`, `--text-base: 0.9375rem`, `--text-md: 1rem`
+- `--text-xl: 1.375rem`, `--text-2xl: 1.75rem`, `--text-3xl: clamp(2.2rem, 1.8rem + 2.4vw, 3.15rem)` — hero display
+- Line-height: `1.60` body, `1.08` display. Letter-spacing: `-0.02em` display, `-0.025em` hero
 
 ### 3.3 Type Rules
 
-- **Do:** Semi-bold (600) for headings, medium (500) for controls. Regular (400) for body.
-- **Don't:** Use font-weight 800 in UI except hero numeral (`46.`) style details.
-- **Do:** All-caps 11px tracking 0.08em for eyebrows and CV section labels.
-- **Don't:** Use serif in form controls.
+- **Do:** Newsreader 600 for display, Inter 600 for controls, 400 for body
+- **Don't:** extra-bold UI
+- **Do:** All-caps 11px tracking 0.11em for eyebrows
+- **Don't:** serif in form controls
 
 ---
 
 ## 4. Spacing & Layout
 
-Base unit 4px. Canonical stack: `4 / 8 / 12 / 16 / 20 / 24 / 32 / 40 / 64`.
+Base 4px. Stack `4/8/12/16/20/24/32/40/64`.
 
-- `--space-1: 0.25rem` … `--space-16: 4rem`
-- Max content width: `--max: 72rem` (1152px). Marketing sections may use `--max-narrow: 44rem` for reading.
-- Header height: `--header-h: 4rem`
-- Radius: `--radius-sm: 6px`, `--radius-md: 10px`, `--radius-lg: 14px`, `--radius-xl: 18px`, `--radius-full: 999px`
-- CV paper radius in preview: `10px` on desktop (soft shadow), `0` in print.
+- `--max: 72rem`, `--max-narrow: 44rem`, `--header-h: 4.25rem`
+- Radius softer: `--radius-sm: 8px`, `--radius-md: 12px`, `--radius-lg: 16px`, `--radius-xl: 22px`, `--radius-full: 999px` — editorial roundness from Manus reference
+- CV paper radius `12px` in preview, `0` in print
 
-**Layout grid:**
-
-- Marketing pages: 12-col implicit, centered container with 16px gutters mobile, 24px desktop.
-- Builder: split `min(560px, 48%)` editor + `1fr` preview on >=1024px. Below that, toggle tabs.
+**Grid:**
+- Marketing: centered container, 16px gutters mobile, 28px desktop
+- Builder: 560px editor + `1fr` preview ≥1024px, otherwise tabs
 
 ---
 
 ## 5. Components
 
-### 5.1 Buttons
+### 5.1 Buttons — pill, softer
 
-- **Primary:** filled ink (`--brand`). Height 40–44px. Font 14px medium. Radius 10px. Shadow-sm on default, no shadow on pressed. Hover: slightly lighter ink, not brand-blue.
-- **Secondary:** surface with border, same height. Hover: `--surface-2`.
-- **Ghost:** text only, used for “Skip” and tertiary actions.
-- **Destructive:** outlined red, used only for Delete entry.
-- Icon buttons: 36px touch target, 20px icon, border on hover.
-
-Focus: 2px solid `--brand` offset 2px, never removed.
+- **Primary:** filled ink, 42–48px, `999px` radius, `0 2px 10px rgba(18,33,58,0.12)` shadow, hover lifts
+- **Secondary:** white with warm border, same height
+- **Ghost:** text only
+- **Destructive:** outlined red for Delete
 
 ### 5.2 Cards
 
-White surface (dark: `--surface`), 1px `--border`, `radius-lg`, `shadow-sm`. No border heavier than 1px. Selected state: `border: 1.5px solid var(--brand)` + `--brand-soft` fill.
+White, 1px warm border, `16px` radius, `shadow-sm`. Selected: `1.5px solid var(--brand)` + `#eef2f8` fill. Hover lifts 1px.
 
 ### 5.3 Inputs
 
-- Height 42px, radius 10px, border 1px `--border`, background `--surface` (light) / `--surface-2` (dark).
-- Focus: border becomes `--brand` + 3px soft ring `rgba(15,36,57,0.12)`.
-- Error: border `#be123c`, ring `rgba(190,18,60,0.12)`, error text 13px red with icon.
-- Helper text: 13px `--text-2`.
-- Textarea min-height 96px, resize vertical.
+- 44px height, 12px radius, warm border, white bg
+- Focus: ink border + 3px `#eef2f8` ring
+- Error: red border + soft ring
+- Helper 13px stone-500
 
-### 5.4 Segmented Control / Radio Cards
+### 5.4 Choice Cards (purpose/industry etc.)
 
-Large radio cards (used for purpose/industry selectors) behave like GeeQR's segmented control but bigger: icon (20px) + label + description. Checked state has ink border + tiny check dot. Full keyboard roving.
+Large radio-cards, 16px radius, 38px icon, warm bg. Checked: ink border + ` #eef2f8` fill + ink icon with white check. Hover: slight lift to `surface-2`.
 
-### 5.5 Badges & Tags
+### 5.5 Tags
 
-Rounded-full, 11px uppercase tracking 0.06em or 13px regular. Used for “Recommended”, “ATS-friendly” etc.
+Pill, 11px uppercase tracking 0.06em, warm border
 
 ### 5.6 Elevation
 
-- Cards rest at `shadow-sm`
-- Floating preview toolbar at `shadow-md`
-- Modal/sheet at `shadow-lg`
-
-No glassmorphism. Header is translucent only to reduce visual weight: `backdrop-filter: blur(12px)` with `rgba(255,255,255,0.84)` light, `rgba(14,20,30,0.84)` dark.
+- Cards `shadow-sm`
+- Preview paper `shadow-paper`
+- Header translucent, no glassmorphism elsewhere
 
 ---
 
-## 6. CV Document Visual Rules
+## 6. CV Document — always light paper
 
-The CV paper is **always** light, because the PDF is light. The preview uses true A4 proportions (210×297mm) scaled to fit. Shades:
-
-- Body: `Inter` 9–10pt equivalent (approx 13–14px screen)
-- Headings: `Newsreader` or `Inter` semi-bold depending on template
-- Margins: 14–18mm
-- Colors: ink (#0f172a) + muted slate + single accent per template (never more than one accent hue)
-- Rules: 1px hairlines `rgba(15,36,57,0.12)` for section separators
-
-Templates each have a distinct purpose — see `TEMPLATE CATEGORIES` — but share the same underlying data.
+A4 proportions scaled, warm paper rules (`#1c1917` + stone muted + single terracotta accent per template). Margins 14–18mm, 9–10pt body, 1px hairlines `#e7e0d6`.
 
 ---
 
 ## 7. Motion
 
-- `--ease: cubic-bezier(0.22,1,0.36,1)` (gentle spring)
-- `--dur-fast: 120ms` (hover, focus)
-- `--dur: 200ms` (transitions, card select)
-- `--dur-slow: 320ms` (panel enter)
-
-Never auto-animate preview typing character-by-character. Update is immediate. Step transitions slide 8px + fade 160ms, respecting `prefers-reduced-motion`.
+- `--ease: cubic-bezier(0.22,1,0.36,1)`
+- `--dur-fast: 140ms`, `--dur: 220ms`, `--dur-slow: 360ms`
+- No typewriter preview; immediate update; respect `prefers-reduced-motion`
 
 ---
 
 ## 8. Responsive & A11y
 
-- Mobile first. Touch targets >=44px. No horizontal scroll at 320px.
-- Builder: toggle Editor/Preview tabs on mobile; floating “Download PDF” sticky bar.
-- Tablet 768–1023: editor full-width, preview below as collapsible sheet.
-- Desktop >=1024: side-by-side editor + sticky preview.
-- Keyboard: full roving focus, skip link, visible focus rings, no focus traps.
-- Forms: `<label>` + `aria-describedby` for helper/error, `aria-invalid` on error.
-- Color is never the only signal: errors have icon + text.
+- Mobile-first, 44px targets, no scroll at 320px
+- Builder tabs on mobile, split sticky on desktop
+- Keyboard roving, skip link, focus rings, `aria-describedby`/`aria-invalid`, color not sole signal
 
 ---
 
-## 9. Imagery & Illustration
+## 9. Imagery
 
-No stock hero photo of people shaking hands. If illustration is needed, use thin-line icons (Lucide-style 1.6px stroke) and subtle paper texture on preview shadow. Template thumbnails are miniature renderings of real CV HTML, not pre-made images.
+No stock handshakes. Thin-line icons (1.6px), paper texture via subtle radial gradients, thumbnails are miniature real CVs.
 
 ---
 
@@ -211,24 +179,21 @@ No stock hero photo of people shaking hands. If illustration is needed, use thin
 
 | Do | Don't |
 |---|---|
-| Use small, honest helper text under inputs | Use placeholder as label |
-| Show real empty states (“No projects yet — add your first”) | Leave blank white space |
-| Keep primary CTA to one per section (“Create my CV”) | Put three competing CTAs side by side |
-| Use sentence case everywhere | Use Title Case for buttons |
-| Make privacy claims that match implementation | Claim “we never see your data” while loading third-party fonts that do — document it honestly |
-| Reveal progressive disclosure (e.g., “Do you have work experience?” → if yes show fields) | Show 50 fields on one page |
+| Warm, honest helper text | Placeholder as label |
+| Real empty states | Blank white space |
+| One primary CTA per section | Three competing CTAs |
+| Sentence case | Title Case buttons |
+| Honest privacy claims | “We never see your data” while loading fonts — document it |
+| Progressive disclosure | 50 fields on one page |
 
 ---
 
-## 11. Implementation Notes
+## 11. Implementation
 
-- Tokens live in `src/styles/tokens.css` and are the single source of truth.
-- No inline color values in components. Import tokens via CSS variables only.
-- Dark theme toggles via `html.dark` class, persisted in `localStorage` under `standout:theme`.
-- CV templates import `src/styles/templates.css` but keep document colors isolated from app theme.
-- All pages wrap with `.container` and semantic landmarks: `<header>`, `<main>`, `<section>`, `<footer>`.
-- Respect `prefers-reduced-motion` globally.
+- Tokens in `src/styles/tokens.css` — single source
+- No inline colors, only CSS vars
+- Dark via `html.dark`, persisted `standout:theme`
+- Templates isolate document colors from app theme
+- Respect reduced-motion
 
----
-
-*This document is intentionally opinionated. StandOut should be recognizable as a calm, premium document tool — closer to Linear/Notion's restraint than to a neon AI landing page.*
+*This revision leans warm-editorial, learning from the Manus/Candid reference’s paper-centric, terracotta-accented, generously spaced aesthetic — while keeping StandOut’s ink-navy authority.*
