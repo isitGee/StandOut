@@ -1,0 +1,26 @@
+{
+  "name": "standout",
+  "private": true,
+  "version": "1.0.0",
+  "description": "StandOut — Create the right CV for what you're trying to achieve. Guided, privacy-first CV builder.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5173",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "lint": "echo \"no lint configured\"",
+    "test": "node scripts/smoke.mjs"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.3",
+    "vite": "^5.4.8"
+  },
+  "keywords": ["cv", "resume", "builder", "ats", "privacy-first"],
+  "author": "StandOut",
+  "license": "MIT"
+}
