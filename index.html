@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>StandOut — Create the right CV for what you're trying to achieve</title>
+    <meta name="description" content="StandOut helps anyone create the right CV for their actual goal — job, internship, scholarship, or freelance work. Guided, private, and free. No account required. Your data stays in your browser." />
+    <link rel="canonical" href="https://isitgee.github.io/StandOut/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="StandOut — Create the right CV for what you're trying to achieve" />
+    <meta property="og:description" content="Tell us what you're trying to accomplish — we'll guide you to the right CV structure, let you customize it, preview it live, and download a professional PDF. Private and free." />
+    <meta property="og:url" content="https://isitgee.github.io/StandOut/" />
+    <meta property="og:image" content="./og-image.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="StandOut — CV builder that guides you" />
+    <meta name="twitter:description" content="From first CV to executive resume — StandOut guides you to the right format. ATS-friendly, modern, creative, academic and more." />
+    <meta name="theme-color" content="#fdfcfa" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "StandOut",
+        "url": "https://isitgee.github.io/StandOut/",
+        "description": "Guided CV builder — create the right CV for your goal. Private, free, no account required.",
+        "applicationCategory": "BusinessApplication",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": "ATS-friendly CVs, live preview, photo support, PDF export, guided questionnaire"
+      }
+    </script>
+    <style>
+      /* critical FOUC prevention — warm editorial */
+      html { background: #fdfcfa; }
+      html.dark { background: #0f141b; }
+    </style>
+    <script>
+      (function() {
+        try {
+          var t = localStorage.getItem('standout:theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = t || (prefersDark ? 'dark' : 'light');
+          if (theme === 'dark') document.documentElement.classList.add('dark');
+        } catch(e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <noscript>
+      <div style="max-width: 40rem; margin: 4rem auto; padding: 2rem; font-family: system-ui; line-height: 1.6;">
+        <h1>StandOut needs JavaScript</h1>
+        <p>This CV builder runs entirely in your browser to keep your information private. Please enable JavaScript to create your CV.</p>
+      </div>
+    </noscript>
+  </body>
+</html>

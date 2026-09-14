@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#fdfcfa"/>
+  <rect x="40" y="40" width="1120" height="550" rx="24" fill="white" stroke="#e7e0d6"/>
+  <text x="80" y="120" font-family="Inter, sans-serif" font-size="22" font-weight="700" letter-spacing="3" fill="#12213a">STANDOUT</text>
+  <text x="80" y="190" font-family="Newsreader, Georgia, serif" font-size="54" font-weight="600" fill="#1c1917">Create the right CV</text>
+  <text x="80" y="250" font-family="Newsreader, Georgia, serif" font-size="54" font-weight="400" font-style="italic" fill="#57534e">for what you’re trying to achieve.</text>
+  <text x="80" y="300" font-family="Inter, sans-serif" font-size="20" fill="#57534e">Guided • Private • No account required • ATS-friendly</text>
+  <rect x="80" y="360" width="420" height="56" rx="28" fill="#12213a"/>
+  <text x="295" y="395" font-family="Inter, sans-serif" font-size="18" font-weight="700" fill="white" text-anchor="middle">Create my CV — free</text>
+  <!-- mini paper -->
+  <g transform="translate(780, 90)">
+    <rect width="340" height="440" rx="16" fill="white" stroke="#e7e0d6" stroke-width="1.2"/>
+    <rect x="24" y="24" width="140" height="12" rx="6" fill="#1c1917"/>
+    <rect x="24" y="44" width="90" height="7" rx="3.5" fill="#a8a29e"/>
+    <line x1="24" y1="66" x2="316" y2="66" stroke="#f1ebe3"/>
+    <rect x="24" y="84" width="80" height="7" rx="3.5" fill="#1c1917" opacity="0.9"/>
+    <rect x="24" y="98" width="292" height="6" rx="3" fill="#e7e0d6"/><rect x="24" y="108" width="260" height="6" rx="3" fill="#e7e0d6"/><rect x="24" y="118" width="280" height="6" rx="3" fill="#e7e0d6"/>
+    <rect x="24" y="140" width="80" height="7" rx="3.5" fill="#1c1917" opacity="0.9"/>
+    <rect x="24" y="154" width="292" height="6" rx="3" fill="#e7e0d6"/><rect x="24" y="164" width="240" height="6" rx="3" fill="#e7e0d6"/>
+    <circle cx="298" cy="24" r="3.5" fill="#b65a2a" />
+  </g>
+</svg>

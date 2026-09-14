@@ -1,0 +1,43 @@
+/* print.css — PDF export fidelity */
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  html, body {
+    background: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* hide app chrome when printing via window.print() */
+  .site-header,
+  .site-footer,
+  .builder-editor,
+  .preview-toolbar,
+  .builder-tabs-mobile,
+  .toasts,
+  .no-print {
+    display: none !important;
+  }
+  .builder, .builder-preview, .preview-paper-wrap {
+    display: block !important;
+    background: #fff !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  .cv-paper {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    transform: none !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  /* ensure page breaks don't slice entries */
+  .cv-section, .cv-entry { break-inside: avoid; }
+  .cv { -webkit-print-color-adjust: exact; }
+}
