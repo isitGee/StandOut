@@ -1,0 +1,21 @@
+[
+  "/api/chat/getMapReduceTool",
+  "/api/chat/getSessionFilesV2",
+  "/api/v1/session/bootstrap",
+  "/api/chat/uploadComplete",
+  "/api/chat/getCascadeJobEvents",
+  "/api/chat/getPresignedUploadUrl",
+  "/api/chat/requestVncOtp",
+  "/api/chat/getDownloadUrl",
+  "/api/chat/getMobilePreviewStatus",
+  "/api/chat/getOnlineMyBrowserClients",
+  "/api/chat/getSessionV2",
+  "/api/chat/getSandboxStatus",
+  "/api/chat/deleteSession",
+  "/api/chat/startSandbox",
+  "/api/chat/scheduleTask",
+  "/api/chat/listCascadeJobs",
+  "/api/chat/getCascadeJobDetail",
+  "/api/chat/getSessionOutline",
+  "/api/chat/wakeMobilePreview"
+]
