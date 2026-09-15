@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { CandidLogoMark } from "../Icons.jsx";
 
 export function Footer() {
   return (
@@ -6,9 +7,10 @@ export function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <div style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem", fontWeight: 800 }}>
-              <span className="brand-mark">SO</span> StandOut
-            </div>
+            <Link to="/" className="brand" style={{ display: "inline-flex", textDecoration: "none" }}>
+              <CandidLogoMark size={24} />
+              <span className="brand-text">candid</span>
+            </Link>
             <p>
               Create the right CV for what you’re trying to achieve — guided, private, and free.
               No account required. Your information stays in your browser.
@@ -17,16 +19,16 @@ export function Footer() {
 
           <div className="footer-col">
             <h4>Product</h4>
-            <Link to="/builder">Builder</Link>
+            <Link to="/builder">Build a CV</Link>
             <Link to="/templates">Templates</Link>
             <Link to="/examples">Examples</Link>
-            <Link to="/guide">CV Guide</Link>
+            <Link to="/guide">CV guide</Link>
           </div>
 
           <div className="footer-col">
             <h4>Help</h4>
             <Link to="/faq">FAQ</Link>
-            <Link to="/contact">Contact / Feedback</Link>
+            <Link to="/contact">Contact & Feedback</Link>
             <a href="https://github.com/isitGee/StandOut" target="_blank" rel="noreferrer">GitHub</a>
           </div>
 
@@ -39,9 +41,9 @@ export function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} StandOut. Built client-side, privacy-first.</span>
-          <span style={{ display: "inline-flex", gap: "0.7rem", alignItems: "center" }}>
-            <span style={{ width: 7, height: 7, borderRadius: 999, background: "#0f7a3d", display: "inline-block" }} aria-hidden /> No account required
+          <span>© {new Date().getFullYear()} candid. Built client-side, privacy-first.</span>
+          <span style={{ display: "inline-flex", gap: "0.6rem", alignItems: "center" }}>
+            <span style={{ width: 7, height: 7, borderRadius: 999, background: "var(--brand)", display: "inline-block" }} aria-hidden /> Private by design
           </span>
         </div>
       </div>

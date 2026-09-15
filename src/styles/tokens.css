@@ -1,54 +1,68 @@
-/* StandOut — design tokens — warm editorial refresh, inspired by Manus/Candid reference */
+/* candid — design tokens — exact copy from Candid reference */
 :root {
-  /* Brand — deep ink, warm accent (terracotta) */
-  --brand: #12213a;
-  --brand-strong: #0e1a2e;
-  --brand-soft: #eef2f8;
-  --accent: #b65a2a;
-  --accent-soft: #fdf0e6;
+  /* Brand — deep rich teal & warm coral */
+  --brand: #206062;
+  --brand-strong: #17484a;
+  --brand-hover: #1b5355;
+  --brand-soft: #e8f1f0;
+  --brand-ring: rgba(32, 96, 98, 0.2);
   --on-brand: #ffffff;
 
-  /* Surfaces — warm paper, not cold gray */
-  --bg: #fdfcfa;
-  --bg-warm: #f7f3ee;
+  /* Primary Action */
+  --action: #206062;
+  --action-hover: #1b5355;
+  --action-pressed: #17484a;
+  --on-action: #ffffff;
+
+  /* Accent — warm coral / salmon / terracotta */
+  --accent: #e9795b;
+  --accent-strong: #d96543;
+  --accent-line: #ed9e88;
+  --accent-soft: #fbf0eb;
+  --accent-ring: rgba(233, 121, 91, 0.2);
+
+  /* Surfaces — warm sage-stone paper canvas */
+  --bg: #f5f5f0;
+  --bg-warm: #eee page / #ecebe4;
   --surface: #ffffff;
-  --surface-2: #f7f3ee;
-  --surface-3: #efe9e0;
+  --surface-2: #eeede6;
+  --surface-3: #e2e0d8;
   --paper: #ffffff;
 
-  /* Text — stone, warmer than slate */
-  --text: #1c1917;
-  --text-2: #57534e;
-  --text-3: #a8a29e;
+  /* Text — deep charcoal pine, muted body */
+  --text: #1b2424;
+  --text-2: #525866;
+  --text-3: #8a909d;
 
-  /* Border — warm stone */
-  --border: #e7e0d6;
-  --border-strong: #d6cbb8;
-  --border-soft: #f1ebe3;
+  /* Borders — soft warm stone */
+  --border: #e2e0d8;
+  --border-strong: #cfccc2;
+  --border-soft: #eeede6;
 
   /* States */
-  --success: #0f7a3d;
-  --success-soft: #e6f4ea;
-  --warning: #92400e;
+  --success: #206062;
+  --success-soft: #e8f1f0;
+  --warning: #d97706;
   --warning-soft: #fef3c7;
-  --error: #be123c;
+  --error: #dc2626;
   --error-soft: #fee2e2;
-  --info: #12213a;
-  --info-soft: #eef2f8;
+  --info: #206062;
+  --info-soft: #e8f1f0;
 
-  /* Shadows — warm, soft */
-  --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.06), 0 1px 3px rgba(28, 25, 23, 0.04);
-  --shadow-md: 0 8px 24px rgba(28, 25, 23, 0.08), 0 2px 8px rgba(28, 25, 23, 0.06);
-  --shadow-lg: 0 18px 48px rgba(28, 25, 23, 0.12), 0 4px 16px rgba(28, 25, 23, 0.08);
-  --shadow-paper: 0 2px 12px rgba(28,25,23,0.07), 0 12px 40px rgba(28,25,23,0.10);
+  /* Shadows — soft, natural */
+  --shadow-sm: 0 1px 2px rgba(27, 36, 36, 0.04), 0 1px 3px rgba(27, 36, 36, 0.03);
+  --shadow-md: 0 4px 16px rgba(27, 36, 36, 0.06), 0 1px 3px rgba(27, 36, 36, 0.04);
+  --shadow-lg: 0 12px 32px rgba(27, 36, 36, 0.08), 0 2px 6px rgba(27, 36, 36, 0.04);
+  --shadow-paper: 0 10px 30px rgba(27, 36, 36, 0.06), 0 1px 3px rgba(27, 36, 36, 0.04);
 
-  /* Header — warm glass */
-  --header-bg: rgba(253, 252, 250, 0.88);
-  --header-border: rgba(28, 25, 23, 0.06);
+  /* Header */
+  --header-bg: rgba(245, 245, 240, 0.94);
+  --header-border: #e2e0d8;
 
-  /* Typography — editorial serif for display */
-  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-display: "Newsreader", Georgia, serif;
+  /* Typography */
+  --font-sans: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-serif: "Newsreader", "Playfair Display", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", monospace;
 
   --text-xs: 0.72rem;
@@ -58,9 +72,9 @@
   --text-lg: 1.125rem;
   --text-xl: 1.375rem;
   --text-2xl: 1.75rem;
-  --text-3xl: clamp(2.2rem, 1.8rem + 2.4vw, 3.15rem);
+  --text-3xl: clamp(2.4rem, 2rem + 2.5vw, 3.6rem);
   --leading: 1.60;
-  --leading-tight: 1.08;
+  --leading-tight: 1.05;
 
   /* Spacing */
   --space-1: 0.25rem;
@@ -74,11 +88,11 @@
   --space-12: 3rem;
   --space-16: 4rem;
 
-  /* Radius — softer, more editorial */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 22px;
+  /* Radius — clean rounded rectangle */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
   --radius-full: 999px;
 
   /* Motion */
@@ -90,65 +104,63 @@
   --dur-theme: 260ms;
 
   /* Layout */
-  --max: 72rem;
-  --max-narrow: 44rem;
+  --max: 76rem;
+  --max-narrow: 46rem;
   --header-h: 4.25rem;
 
   color-scheme: light;
 }
 
 html.dark {
-  --brand: #9bb6ff;
-  --brand-strong: #b3c8ff;
-  --brand-soft: rgba(155, 182, 255, 0.14);
-  --accent: #f0b27a;
-  --accent-soft: rgba(240, 178, 122, 0.14);
-  --on-brand: #0f141b;
+  --brand: #368e91;
+  --brand-strong: #409fa2;
+  --brand-hover: #2f8184;
+  --brand-soft: rgba(54, 142, 145, 0.16);
+  --brand-ring: rgba(54, 142, 145, 0.25);
+  --on-brand: #0d1414;
 
-  --action: #2f5bff;
-  --action-hover: #3d6aff;
-  --action-pressed: #1e4ae6;
+  --action: #368e91;
+  --action-hover: #409fa2;
+  --action-pressed: #2a7275;
   --on-action: #ffffff;
 
-  --bg: #0f141b;
-  --bg-warm: #131a24;
-  --surface: #161e2d;
-  --surface-2: #1c2436;
-  --surface-3: #222e44;
+  --accent: #f08b71;
+  --accent-strong: #f4a28c;
+  --accent-line: #f08b71;
+  --accent-soft: rgba(240, 139, 113, 0.16);
+  --accent-ring: rgba(240, 139, 113, 0.25);
+
+  --bg: #141a1a;
+  --bg-warm: #182020;
+  --surface: #1c2424;
+  --surface-2: #232d2d;
+  --surface-3: #2b3636;
   --paper: #ffffff;
 
-  --text: #eef2f8;
-  --text-2: #a8b3c6;
-  --text-3: #7a8599;
+  --text: #f0f3f3;
+  --text-2: #9ba8a8;
+  --text-3: #6b7878;
 
   --border: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.14);
-  --border-soft: rgba(255,255,255,0.06);
+  --border-strong: rgba(255, 255, 255, 0.15);
+  --border-soft: rgba(255, 255, 255, 0.05);
 
-  --success: #4ade80;
-  --success-soft: rgba(74, 222, 128, 0.12);
+  --success: #368e91;
+  --success-soft: rgba(54, 142, 145, 0.16);
   --warning: #fbbf24;
   --warning-soft: rgba(251, 191, 36, 0.12);
   --error: #fb7185;
   --error-soft: rgba(251, 113, 133, 0.12);
-  --info: #9bb6ff;
-  --info-soft: rgba(155, 182, 255, 0.12);
+  --info: #368e91;
+  --info-soft: rgba(54, 142, 145, 0.16);
 
-  --header-bg: rgba(15, 20, 27, 0.86);
-  --header-border: rgba(255, 255, 255, 0.06);
+  --header-bg: rgba(20, 26, 26, 0.92);
+  --header-border: rgba(255, 255, 255, 0.08);
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.55);
-  --shadow-paper: 0 8px 32px rgba(0,0,0,0.45);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.55);
+  --shadow-paper: 0 8px 30px rgba(0, 0, 0, 0.5);
 
   color-scheme: dark;
-}
-
-/* Light action aliases */
-:root {
-  --action: #12213a;
-  --action-hover: #1a2f52;
-  --action-pressed: #0e1a2e;
-  --on-action: #ffffff;
 }

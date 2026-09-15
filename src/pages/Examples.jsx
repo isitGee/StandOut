@@ -1,41 +1,51 @@
 import { Link } from "react-router-dom";
 
 const examples = [
-  { title: "Student — Computer Science (no formal experience)", need: "Internship", template: "Graduate", points: ["Education first", "Projects carry weight", "Skills tuned to role"] },
-  { title: "Healthcare — Nurse", need: "Job application", template: "Classic", points: ["Clear hierarchy", "Certifications visible", "Photo optional"] },
-  { title: "Software Developer — 4 years", need: "Online application", template: "Modern Split", points: ["Experience before education", "Skills + projects"] },
-  { title: "Scholarship — Undergraduate", need: "Fellowship", template: "Academic", points: ["Leadership & volunteering", "Achievements"] },
-  { title: "Freelance Designer", need: "Client work", template: "Creative", points: ["Portfolio links", "Services"] },
-  { title: "Business Graduate", need: "Graduate scheme", template: "Classic / Contemporary", points: ["Internship bullets with impact"] },
+  { title: "Product Designer — 6 years", need: "Tech / Product", template: "Classic", points: ["Experience before education", "Selected projects highlighted", "Skills pill tags"] },
+  { title: "Student — Computer Science (no formal experience)", need: "Internship", template: "Graduate", points: ["Education first", "Projects carry weight", "Technical coursework"] },
+  { title: "Healthcare — Registered Nurse", need: "Job application", template: "Classic", points: ["Clinical certifications visible", "Shift and hospital experience", "Clear hierarchy"] },
+  { title: "Software Developer — 4 years", need: "Online application", template: "Modern Split", points: ["Sidebar contact & skills", "Quantified engineering impact", "ATS-compatible"] },
+  { title: "Scholarship & Fellowship Applicant", need: "Fellowship", template: "Academic", points: ["Research & publications", "Leadership & volunteering", "Academic honors"] },
+  { title: "Freelance Brand & Web Designer", need: "Client work", template: "Creative Portfolio", points: ["Live portfolio links", "Client case studies", "Warm visual palette"] },
 ];
 
 export function Examples() {
   return (
-    <div className="container" style={{ padding:"1.5rem 0 2.5rem" }}>
-      <div className="eyebrow">CV Examples</div>
-      <h1 style={{ fontSize:"2rem", fontWeight:800, letterSpacing:"-0.02em" }}>Examples by use case</h1>
-      <p className="section-lead" style={{ marginTop:"0.6rem" }}>See how the same builder adapts structure, ordering, and template for different goals. Load any example in the builder and replace it with your data.</p>
+    <div className="container" style={{ padding: "2rem 0 3.5rem" }}>
+      <div className="eyebrow">
+        <span className="eyebrow-dot">•</span> CV EXAMPLES
+      </div>
+      <h1 className="section-title" style={{ marginTop: "0.5rem" }}>Examples by use case</h1>
+      <p className="section-lead" style={{ marginTop: "0.6rem" }}>
+        See how candid adapts structure, ordering, and template for different goals. Load any example in the builder and replace it with your own details.
+      </p>
 
-      <div className="template-grid" style={{ marginTop:"1.5rem" }}>
-        {examples.map(ex=> (
-          <div key={ex.title} className="card" style={{ padding:"1.2rem", display:"grid", gap:"0.5rem" }}>
-            <div style={{ display:"flex", gap:"0.5rem", flexWrap:"wrap" }}>
+      <div className="template-grid" style={{ marginTop: "2rem" }}>
+        {examples.map(ex => (
+          <div key={ex.title} className="card" style={{ padding: "1.4rem", display: "grid", gap: "0.6rem" }}>
+            <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
               <span className="tag">{ex.need}</span>
-              <span className="tag" style={{ background:"var(--brand-soft)", color:"var(--brand)" }}>{ex.template}</span>
+              <span className="tag" style={{ background: "var(--brand-soft)", color: "var(--brand)" }}>{ex.template}</span>
             </div>
-            <h3 style={{ fontSize:"1rem", lineHeight:1.3 }}>{ex.title}</h3>
-            <ul style={{ paddingLeft:"1.1rem", color:"var(--text-2)", fontSize:"0.9rem", display:"grid", gap:"0.25rem" }}>
-              {ex.points.map(p=> <li key={p}>{p}</li>)}
+            <h3 style={{ fontSize: "1.02rem", lineHeight: 1.3, marginTop: "0.3rem" }}>{ex.title}</h3>
+            <ul style={{ paddingLeft: "1.1rem", color: "var(--text-2)", fontSize: "0.9rem", display: "grid", gap: "0.3rem" }}>
+              {ex.points.map(p => <li key={p}>{p}</li>)}
             </ul>
-            <Link to="/builder" className="btn btn-secondary btn-small" style={{ marginTop:"0.4rem" }}>Open in builder</Link>
+            <Link to="/builder" className="btn btn-secondary btn-small" style={{ marginTop: "0.6rem" }}>
+              Open in builder <span className="btn-arrow" aria-hidden="true">&rarr;</span>
+            </Link>
           </div>
         ))}
       </div>
 
-      <div className="card" style={{ marginTop:"1.5rem", padding:"1.2rem" }}>
-        <h3 style={{ fontSize:"1rem" }}>Want a tailored example?</h3>
-        <p className="small muted" style={{ marginTop:"0.4rem" }}>Build your CV in the editor — the preview updates as you type. Try switching templates to see the same data in different lights.</p>
-        <Link to="/builder" className="btn btn-primary btn-small" style={{ marginTop:"0.7rem" }}>Create my CV</Link>
+      <div className="card" style={{ marginTop: "2rem", padding: "1.5rem" }}>
+        <h3 style={{ fontSize: "1.05rem" }}>Want a tailored example?</h3>
+        <p className="small muted" style={{ marginTop: "0.35rem" }}>
+          Build your CV in the editor — the preview updates live as you type. Try switching templates to see your data presented in different formats.
+        </p>
+        <Link to="/builder" className="btn btn-primary btn-small" style={{ marginTop: "0.85rem" }}>
+          Create my CV <span className="btn-arrow" aria-hidden="true">&rarr;</span>
+        </Link>
       </div>
     </div>
   );

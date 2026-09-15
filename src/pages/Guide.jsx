@@ -1,14 +1,16 @@
 export function Guide() {
   return (
-    <div className="container" style={{ padding:"1.5rem 0 2.5rem" }}>
-      <div className="eyebrow">CV Guide</div>
-      <h1 style={{ fontSize:"2rem", fontWeight:800, letterSpacing:"-0.02em" }}>How to build a CV that gets read</h1>
-      <p className="section-lead" style={{ marginTop:"0.6rem" }}>Plain language, no jargon. Written for people who have never made a CV before — and useful if you have.</p>
+    <div className="container" style={{ padding: "2rem 0 3.5rem" }}>
+      <div className="eyebrow">
+        <span className="eyebrow-dot">•</span> CV GUIDE
+      </div>
+      <h1 className="section-title" style={{ marginTop: "0.5rem" }}>How to build a CV that gets read</h1>
+      <p className="section-lead" style={{ marginTop: "0.6rem" }}>Plain language, no jargon. Written for people who have never made a CV before — and useful if you have.</p>
 
-      <div className="prose" style={{ marginTop:"1.5rem" }}>
+      <div className="prose" style={{ marginTop: "1.8rem" }}>
         <h2>What sections do you actually need?</h2>
         <p>Every CV needs contact info and an overview of what you’ve done — but “what you’ve done” looks different for everyone. A student’s strongest section might be projects; an experienced hire’s is work history; a researcher’s is publications.</p>
-        <p>StandOut orders sections based on your goal. If a section is empty we simply hide it — your final CV never shows blank headings.</p>
+        <p>candid orders sections based on your goal. If a section is empty we simply hide it — your final CV never shows blank headings.</p>
 
         <div className="guide-grid">
           <div className="card guide-card">
@@ -34,10 +36,10 @@ export function Guide() {
         <p>If you’re applying through an online portal, choose Classic. If you email a person directly, Modern Split or Creative can be more visually engaging.</p>
 
         <h2>Should you include a photo?</h2>
-        <p>It depends on country, industry, and where the CV will be read. Many online systems and employers in the UK/US prefer no photo. Visual or hospitality roles, or printed portfolios, may expect one. StandOut lets you add, style (circular, rounded, square, portrait), or omit a photo — and will warn you if the combination is risky.</p>
+        <p>It depends on country, industry, and where the CV will be read. Many online systems and employers in the UK/US prefer no photo. Visual or hospitality roles, or printed portfolios, may expect one. candid lets you add, style (circular, rounded, square, portrait), or omit a photo — and will warn you if the combination is risky.</p>
 
         <h2>How long should a CV be?</h2>
-        <p>One page is common for students and early-career. Experienced professionals may use two pages — readability beats ultra-small type. StandOut flows content to additional A4 pages with proper breaks; it never shrinks text to force a single page.</p>
+        <p>One page is common for students and early-career. Experienced professionals may use two pages — readability beats ultra-small type. candid flows content to additional A4 pages with proper breaks; it never shrinks text to force a single page.</p>
 
         <h2>Checklist before you send</h2>
         <ul>

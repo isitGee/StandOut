@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { IconMoon, IconSun } from "../Icons.jsx";
+import { CandidLogoMark, IconMoon, IconSun } from "../Icons.jsx";
 
 export function Header({ theme, onToggleTheme }) {
   const [open, setOpen] = useState(false);
@@ -8,29 +8,28 @@ export function Header({ theme, onToggleTheme }) {
   return (
     <header className="site-header">
       <div className="container">
-        <Link to="/" className="brand" aria-label="StandOut home" onClick={() => setOpen(false)}>
-          <span className="brand-mark" aria-hidden>SO</span>
-          <span>Stand<span>Out</span></span>
+        <Link to="/" className="brand" aria-label="candid home" onClick={() => setOpen(false)}>
+          <CandidLogoMark size={28} />
+          <span className="brand-text">candid</span>
         </Link>
 
         <nav className="nav-desktop" aria-label="Primary">
-          <NavLink to="/builder" className="nav-link">Builder</NavLink>
+          <NavLink to="/" end className="nav-link">Home</NavLink>
+          <NavLink to="/builder" className="nav-link">Build a CV</NavLink>
           <NavLink to="/templates" className="nav-link">Templates</NavLink>
-          <NavLink to="/guide" className="nav-link">Guide</NavLink>
-          <NavLink to="/examples" className="nav-link">Examples</NavLink>
-          <NavLink to="/faq" className="nav-link">FAQ</NavLink>
+          <NavLink to="/guide" className="nav-link">CV guide</NavLink>
         </nav>
 
         <div className="header-actions">
           <button
-            className="icon-btn"
+            className="icon-btn theme-toggle"
             aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             onClick={onToggleTheme}
           >
             {theme === "dark" ? <IconSun /> : <IconMoon />}
           </button>
-          <Link to="/builder" className="btn btn-primary btn-small" style={{ display: "inline-flex" }}>
-            Create my CV
+          <Link to="/builder" className="btn btn-primary btn-header">
+            Create my CV <span className="btn-arrow" aria-hidden="true">&rarr;</span>
           </Link>
           <button
             className="hamburger"
@@ -46,9 +45,10 @@ export function Header({ theme, onToggleTheme }) {
 
       {open && (
         <nav id="mobile-nav" className="mobile-nav" aria-label="Mobile">
-          <Link to="/builder" onClick={() => setOpen(false)}>Builder</Link>
+          <Link to="/" onClick={() => setOpen(false)}>Home</Link>
+          <Link to="/builder" onClick={() => setOpen(false)}>Build a CV</Link>
           <Link to="/templates" onClick={() => setOpen(false)}>Templates</Link>
-          <Link to="/guide" onClick={() => setOpen(false)}>CV Guide</Link>
+          <Link to="/guide" onClick={() => setOpen(false)}>CV guide</Link>
           <Link to="/examples" onClick={() => setOpen(false)}>Examples</Link>
           <Link to="/faq" onClick={() => setOpen(false)}>FAQ</Link>
           <Link to="/privacy" onClick={() => setOpen(false)}>Privacy</Link>

@@ -2,35 +2,36 @@ import { Link } from "react-router-dom";
 
 export function Privacy() {
   return (
-    <div className="container" style={{ padding:"1.5rem 0 2.5rem", maxWidth:"44rem" }}>
-      <h1 style={{ fontSize:"2rem", fontWeight:800 }}>Privacy Policy</h1>
+    <div className="container" style={{ padding: "2rem 0 3.5rem", maxWidth: "46rem" }}>
+      <div className="eyebrow">
+        <span className="eyebrow-dot">•</span> PRIVACY POLICY
+      </div>
+      <h1 className="section-title" style={{ marginTop: "0.5rem" }}>Privacy by Design</h1>
       <p className="small muted">Last updated: 14 September 2026</p>
-      <div className="prose" style={{ marginTop:"1rem" }}>
-        <p><strong>StandOut is privacy-first by architecture, not just by promise.</strong> In V1, the CV builder runs entirely in your browser.</p>
+      <div className="prose" style={{ marginTop: "1.5rem" }}>
+        <p><strong>candid is privacy-first by architecture, not just by policy.</strong> The CV builder runs entirely in your browser.</p>
         <h2>What we mean by “privacy-first”</h2>
         <ul>
-          <li>Your CV content (name, experience, education, etc.) is processed locally in your browser.</li>
-          <li>PDF generation happens locally via the browser’s print-to-PDF.</li>
-          <li>For convenience, your last CV is saved in <code>localStorage</code> in this browser so you don’t lose progress. It never goes to our application server.</li>
-          <li>No account is required to create or download a CV.</li>
+          <li>Your CV content (name, experience, education, etc.) is processed locally on your device.</li>
+          <li>PDF generation happens locally via the browser’s native print engine.</li>
+          <li>For convenience, your active CV is cached in <code>localStorage</code> so you don’t lose work between sessions. It is never transmitted to an external database.</li>
+          <li>No sign-up, email, or account creation is required to create or download your CV.</li>
         </ul>
         <h2>What we do not do</h2>
         <ul>
-          <li>We do not store your CV content on a backend database in V1.</li>
-          <li>We do not sell your data.</li>
+          <li>We do not store your personal resume data on remote servers.</li>
+          <li>We do not track or sell your personal details to recruiters or advertisers.</li>
         </ul>
-        <h2>What may still involve third parties</h2>
-        <p>Even with a client-side app, some infrastructure touches data:</p>
+        <h2>Third-party infrastructure</h2>
         <ul>
-          <li><strong>Hosting/CDN logs:</strong> Standard web-server logs (IP, user-agent) may exist at the hosting provider (e.g., GitHub Pages / Vercel / Netlify).</li>
-          <li><strong>Fonts:</strong> We load Google Fonts (Inter, Newsreader, JetBrains Mono). Your browser requests those font files from Google’s servers; refer to Google’s privacy notice.</li>
-          <li><strong>Analytics (if enabled in future):</strong> If we add analytics, we will update this policy before collecting.</li>
+          <li><strong>Hosting:</strong> Standard infrastructure logs (IP, user-agent) may exist at the hosting provider (e.g., GitHub Pages).</li>
+          <li><strong>Web fonts:</strong> We load Google Fonts (Plus Jakarta Sans, Newsreader, JetBrains Mono) directly from Google's CDN.</li>
         </ul>
         <h2>Your controls</h2>
         <ul>
           <li>Clear your CV anytime with <em>Reset</em> in the builder.</li>
           <li>Clear <code>localStorage</code> for this site in your browser settings.</li>
-          <li>Use the <em>Copy backup</em> JSON feature to keep your own offline copy.</li>
+          <li>Use the <em>Copy backup JSON</em> feature to save a portable local copy of your CV.</li>
         </ul>
         <h2>Contact</h2>
         <p>Questions? <Link to="/contact">Contact us</Link>.</p>
@@ -41,22 +42,23 @@ export function Privacy() {
 
 export function Terms() {
   return (
-    <div className="container" style={{ padding:"1.5rem 0 2.5rem", maxWidth:"44rem" }}>
-      <h1 style={{ fontSize:"2rem", fontWeight:800 }}>Terms of Use</h1>
+    <div className="container" style={{ padding: "2rem 0 3.5rem", maxWidth: "46rem" }}>
+      <div className="eyebrow">
+        <span className="eyebrow-dot">•</span> TERMS
+      </div>
+      <h1 className="section-title" style={{ marginTop: "0.5rem" }}>Terms of Use</h1>
       <p className="small muted">Last updated: 14 September 2026</p>
-      <div className="prose" style={{ marginTop:"1rem" }}>
-        <p>StandOut is provided as-is for creating CVs. You are responsible for the accuracy of the information you enter.</p>
+      <div className="prose" style={{ marginTop: "1.5rem" }}>
+        <p>candid is provided as a client-side document creation utility. You are responsible for the truthfulness and accuracy of the information you enter.</p>
         <h2>Acceptable use</h2>
         <ul>
-          <li>Do not enter false credentials, employers, degrees, or achievements. The tool never fabricates them and you shouldn’t either.</li>
-          <li>Do not upload unlawful content or attempt to abuse the service.</li>
+          <li>Do not enter fraudulent credentials, employers, degrees, or achievements. The software does not fabricate claims and users should not either.</li>
+          <li>Do not attempt to compromise the integrity of the website.</li>
         </ul>
-        <h2>No professional advice</h2>
-        <p>Template recommendations and section ordering are guidance, not career or legal advice. Validate expectations with the employer or institution you’re applying to.</p>
-        <h2>Availability</h2>
-        <p>As a static, client-side app, StandOut aims for high availability but offers no uptime guarantee. We may update templates and guidance over time.</p>
-        <h2>Liability</h2>
-        <p>To the extent permitted by law, StandOut is not liable for application outcomes.</p>
+        <h2>No career advice guarantee</h2>
+        <p>Template recommendations and layout adjustments are structured guidance, not guaranteed career or legal advice. Verify the formatting preferences of the specific institution or company you are targeting.</p>
+        <h2>Availability & Liability</h2>
+        <p>As a static, client-side application, candid is offered free without uptime guarantees or liability for employment outcomes.</p>
       </div>
     </div>
   );
@@ -64,21 +66,23 @@ export function Terms() {
 
 export function About() {
   return (
-    <div className="container" style={{ padding:"1.5rem 0 2.5rem", maxWidth:"44rem" }}>
-      <h1 style={{ fontSize:"2rem", fontWeight:800 }}>About StandOut</h1>
-      <div className="prose" style={{ marginTop:"1rem" }}>
-        <p>StandOut exists to solve a simple but overlooked problem: people often have the information for a CV but don’t know what structure, sections, or style is appropriate for their actual goal — a job, internship, scholarship, or freelance work.</p>
-        <p>Instead of “choose a template → fill 50 fields → download,” StandOut asks <em>what you’re trying to accomplish</em> in plain language, guides you to the right structure, and gives you a professional, privacy-first editing experience.</p>
-        <h2>Principles</h2>
+    <div className="container" style={{ padding: "2rem 0 3.5rem", maxWidth: "46rem" }}>
+      <div className="eyebrow">
+        <span className="eyebrow-dot">•</span> ABOUT
+      </div>
+      <h1 className="section-title" style={{ marginTop: "0.5rem" }}>A calmer way to make a CV</h1>
+      <div className="prose" style={{ marginTop: "1.5rem" }}>
+        <p>candid was created to solve a persistent frustration in career tools: most builders force users into rigid templates, demand logins, or hide PDF downloads behind paywalls.</p>
+        <p>candid asks <em>what you’re trying to accomplish</em> in plain language, guides you to the right structure, and gives you a professional, privacy-first editing experience with a live A4 preview.</p>
+        <h2>Core Principles</h2>
         <ul>
-          <li><strong>Guide both beginners and experts</strong> without slowing either down.</li>
-          <li><strong>Plain language</strong> — no assumed knowledge of “ATS,” “chronological,” or “functional.”</li>
-          <li><strong>Privacy-first</strong> — client-side first, no account required.</li>
-          <li><strong>Less but better templates</strong> — each has a clear purpose.</li>
-          <li><strong>Craft</strong> — selectable-text PDFs, proper A4 margins, correct page breaks.</li>
+          <li><strong>Guide both beginners and experienced pros</strong> without friction.</li>
+          <li><strong>Plain language</strong> — no unexplained industry buzzwords.</li>
+          <li><strong>Privacy-first</strong> — client-side first, no account needed.</li>
+          <li><strong>Fewer, genuinely different templates</strong> — each crafted for a specific submission context.</li>
+          <li><strong>Document craft</strong> — selectable-text PDFs, real A4 margins, clean typography.</li>
         </ul>
-        <p>Build quality inspired by our reference projects and the design-system discipline of <code>awesome-design-md</code>. StandOut has its own calm, premium identity — trustworthy enough for career information.</p>
-        <p><Link to="/builder" className="btn btn-primary btn-small">Start building</Link></p>
+        <p><Link to="/builder" className="btn btn-primary" style={{ marginTop: "1rem" }}>Start building your CV <span className="btn-arrow" aria-hidden="true">&rarr;</span></Link></p>
       </div>
     </div>
   );
@@ -86,21 +90,21 @@ export function About() {
 
 export function Contact() {
   return (
-    <div className="container" style={{ padding:"1.5rem 0 2.5rem", maxWidth:"44rem" }}>
-      <h1 style={{ fontSize:"2rem", fontWeight:800 }}>Contact / Feedback</h1>
-      <div className="prose" style={{ marginTop:"1rem" }}>
-        <p>We’d love to hear how StandOut works for you — what helped, what confused you, or what template you wish existed.</p>
-        <h3>GitHub</h3>
-        <p><a href="https://github.com/isitGee/StandOut" target="_blank" rel="noreferrer">isitGee/StandOut</a> — open an issue for bugs or feature ideas.</p>
-        <h3>Email</h3>
-        <p>For now, please use GitHub issues. A direct contact form is on the roadmap with the same privacy-first constraints.</p>
+    <div className="container" style={{ padding: "2rem 0 3.5rem", maxWidth: "46rem" }}>
+      <div className="eyebrow">
+        <span className="eyebrow-dot">•</span> CONTACT
+      </div>
+      <h1 className="section-title" style={{ marginTop: "0.5rem" }}>Contact & Feedback</h1>
+      <div className="prose" style={{ marginTop: "1.5rem" }}>
+        <p>We’d love to hear how candid works for you — what felt easy, what felt unclear, or what features you’d like to see.</p>
+        <h3>GitHub Repository</h3>
+        <p><a href="https://github.com/isitGee/StandOut" target="_blank" rel="noreferrer">github.com/isitGee/StandOut</a> — open an issue for bugs or suggestions.</p>
         <h3>What to include in feedback</h3>
         <ul>
-          <li>Device and browser (e.g., “iPhone 13, Safari”)</li>
-          <li>What you were trying to achieve</li>
-          <li>What felt unclear</li>
+          <li>Device and browser used</li>
+          <li>What you were trying to accomplish</li>
+          <li>Any unexpected formatting or preview issues</li>
         </ul>
-        <p>Thank you for helping make StandOut better for everyone — especially first-time CV builders.</p>
       </div>
     </div>
   );

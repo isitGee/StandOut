@@ -1,24 +1,51 @@
-const KEY = "standout:cv:v1";
-const THEME_KEY = "standout:theme";
+const KEY_CANDID = "candid:cv:v1";
+const KEY_STANDOUT = "standout:cv:v1";
+const THEME_KEY = "candid:theme";
 
 export function saveCV(cv) {
-  try { localStorage.setItem(KEY, JSON.stringify(cv)); } catch {}
+  try {
+    const serialized = JSON.stringify(cv);
+    localStorage.setItem(KEY_CANDID, serialized);
+    localStorage.setItem(KEY_STANDOUT, serialized);
+  } catch {}
 }
+
 export function loadCV(fallback) {
   try {
-    const raw = localStorage.getItem(KEY);
+    const raw = localStorage.getItem(KEY_CANDID) || localStorage.getItem(KEY_STANDOUT);
     if (!raw) return fallback;
     const parsed = JSON.parse(raw);
-    // shallow merge with fallback to allow migrations
-    return { ...fallback, ...parsed, personal: { ...fallback.personal, ...(parsed.personal || {}) }, target: { ...fallback.target, ...(parsed.target || {}) }, photo: { ...fallback.photo, ...(parsed.photo || {}) }, design: { ...fallback.design, ...(parsed.design || {}) } };
-  } catch { return fallback; }
+    return {
+      ...fallback,
+      ...parsed,
+      personal: { ...fallback.personal, ...(parsed.personal || {}) },
+      target: { ...fallback.target, ...(parsed.target || {}) },
+      photo: { ...fallback.photo, ...(parsed.photo || {}) },
+      design: { ...fallback.design, ...(parsed.design || {}) }
+    };
+  } catch {
+    return fallback;
+  }
 }
+
 export function clearCV() {
-  try { localStorage.removeItem(KEY); } catch {}
+  try {
+    localStorage.removeItem(KEY_CANDID);
+    localStorage.removeItem(KEY_STANDOUT);
+  } catch {}
 }
+
 export function saveTheme(theme) {
-  try { localStorage.setItem(THEME_KEY, theme); } catch {}
+  try {
+    localStorage.setItem(THEME_KEY, theme);
+    localStorage.setItem("standout:theme", theme);
+  } catch {}
 }
+
 export function loadTheme() {
-  try { return localStorage.getItem(THEME_KEY); } catch { return null; }
+  try {
+    return localStorage.getItem(THEME_KEY) || localStorage.getItem("standout:theme");
+  } catch {
+    return null;
+  }
 }

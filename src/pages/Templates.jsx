@@ -3,43 +3,58 @@ import { templates } from "../data/templatesRegistry.js";
 
 export function Templates() {
   return (
-    <div className="container" style={{ padding:"1.5rem 0 2.5rem" }}>
-      <div className="eyebrow">Templates</div>
-      <h1 style={{ fontSize:"2rem", fontWeight:800, letterSpacing:"-0.02em" }}>Choose the presentation that fits your goal</h1>
-      <p className="section-lead" style={{ marginTop:"0.6rem" }}>Same information, different presentation. Switch anytime without re-entering data. Every template exports a real A4 PDF with selectable text.</p>
+    <div className="container" style={{ padding: "2rem 0 3.5rem" }}>
+      <div className="eyebrow">
+        <span className="eyebrow-dot">•</span> TEMPLATES
+      </div>
+      <h1 className="section-title" style={{ marginTop: "0.5rem" }}>Choose the presentation that fits your goal</h1>
+      <p className="section-lead" style={{ marginTop: "0.6rem" }}>
+        Same information, different presentation. Switch anytime without re-entering data. Every template exports a real A4 PDF with selectable text.
+      </p>
 
-      <div className="template-grid" style={{ marginTop:"1.5rem" }}>
-        {templates.map(t=> (
+      <div className="template-grid" style={{ marginTop: "2rem" }}>
+        {templates.map(t => (
           <div key={t.id} className="template-card">
-            <div className="template-thumb" style={{ background:"#fdfcfa", display:"grid", placeItems:"center", padding:"1.1rem" }}>
-              <div style={{ width:"78%", aspectRatio:"210/297", background:"#fff", border:"1px solid #e7e0d6", borderRadius:10, boxShadow:"0 6px 20px rgba(28,25,23,0.08)", padding:"12px", display:"grid", gap:8 }}>
-                <div style={{ height:10, width:"60%", background:"#1c1917", borderRadius:999 }} />
-                <div style={{ height:6, width:"40%", background:t.accent, borderRadius:999, opacity:0.9 }} />
-                <div style={{ height:1, background:"#e7e0d6" }} />
-                {Array.from({length:4}).map((_,i)=> (
-                  <div key={i} style={{ display:"grid", gap:4 }}>
-                    <div style={{ height:6, width: 38 - i*4 + "%", background:"#1c1917", borderRadius:999, opacity:0.85 }} />
-                    <div style={{ height:5, width:"88%", background:"#e7e0d6", borderRadius:999 }} />
-                    <div style={{ height:5, width:"72%", background:"#e7e0d6", borderRadius:999 }} />
+            <div className="template-thumb">
+              <div style={{ width: "80%", aspectRatio: "210/297", background: "#fff", border: "1px solid #e2e0d8", borderRadius: 4, padding: "12px", display: "grid", gap: 6, boxShadow: "0 4px 14px rgba(27,36,36,0.06)" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <div style={{ height: 9, width: "50%", background: "#111827", borderRadius: 2 }} />
+                  <div style={{ height: 6, width: "25%", background: t.accent || "#206062", borderRadius: 2 }} />
+                </div>
+                <div style={{ height: 1.5, background: "#111827" }} />
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div key={i} style={{ display: "grid", gap: 3 }}>
+                    <div style={{ height: 6, width: 40 - i * 4 + "%", background: "#4b5563", borderRadius: 2 }} />
+                    <div style={{ height: 4.5, width: "95%", background: "#e5e7eb", borderRadius: 2 }} />
+                    <div style={{ height: 4.5, width: "80%", background: "#e5e7eb", borderRadius: 2 }} />
                   </div>
                 ))}
               </div>
             </div>
             <div className="template-card-body">
-              <div style={{ display:"flex", gap:"0.5rem", alignItems:"center" }}><span className="tag">{t.category}</span><span className="tag" style={{ background:"var(--brand-soft)", color:"var(--brand)", borderColor:"var(--border)" }}>{t.tag}</span></div>
-              <h3 style={{ marginTop:"0.5rem" }}>{t.name}</h3>
+              <div style={{ display: "flex", gap: "0.4rem", alignItems: "center" }}>
+                <span className="tag">{t.category}</span>
+                <span className="tag" style={{ background: "var(--brand-soft)", color: "var(--brand)" }}>{t.tag}</span>
+              </div>
+              <h3 style={{ marginTop: "0.6rem" }}>{t.name}</h3>
               <p>{t.description}</p>
-              <p className="small muted" style={{ marginTop:"0.4rem" }}>Best for: {t.bestFor.join(" · ")}</p>
-              <Link to="/builder" className="btn btn-primary btn-small" style={{ marginTop:"0.75rem", width:"100%" }}>Use this template</Link>
+              <p className="small muted" style={{ marginTop: "0.5rem" }}>Best for: {t.bestFor.join(" · ")}</p>
+              <Link to={`/builder?template=${t.id}`} className="btn btn-primary btn-small" style={{ marginTop: "0.85rem", width: "100%" }}>
+                Use this template <span className="btn-arrow" aria-hidden="true">&rarr;</span>
+              </Link>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="card" style={{ marginTop:"1.5rem", padding:"1.2rem", background:"var(--brand-soft)" }}>
-        <h3 style={{ fontSize:"1rem" }}>Not sure?</h3>
-        <p className="small muted" style={{ marginTop:"0.4rem" }}>Answer 5 questions and we’ll recommend one. You can switch after — the recommendation is a starting point, not a lock-in.</p>
-        <Link to="/builder" className="btn btn-secondary btn-small" style={{ marginTop:"0.7rem" }}>Get a recommendation</Link>
+      <div className="card" style={{ marginTop: "2rem", padding: "1.5rem", background: "var(--surface)" }}>
+        <h3 style={{ fontSize: "1.05rem" }}>Not sure which template to choose?</h3>
+        <p className="small muted" style={{ marginTop: "0.35rem" }}>
+          Answer 5 quick questions and we’ll recommend the best structure. You can switch after — the recommendation is a starting point, not a lock-in.
+        </p>
+        <Link to="/builder?mode=guided" className="btn btn-secondary btn-small" style={{ marginTop: "0.9rem" }}>
+          Get a guided recommendation <span className="btn-arrow" aria-hidden="true">&rarr;</span>
+        </Link>
       </div>
     </div>
   );

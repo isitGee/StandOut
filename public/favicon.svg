@@ -1,5 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <rect width="32" height="32" rx="10" fill="#12213a"/>
-  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-weight="800" font-size="13" fill="white" letter-spacing="-0.5">SO</text>
-  <circle cx="24" cy="8" r="2.5" fill="#b65a2a"/>
+  <g transform="rotate(-5 16 16)">
+    <rect x="2" y="2" width="28" height="28" rx="6" fill="#e9795b"/>
+    <rect x="8" y="8" width="3.5" height="16" rx="1.75" fill="white"/>
+    <rect x="14.25" y="8" width="3.5" height="16" rx="1.75" fill="white"/>
+    <rect x="20.5" y="8" width="3.5" height="16" rx="1.75" fill="white"/>
+  </g>
 </svg>

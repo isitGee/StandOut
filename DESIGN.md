@@ -1,199 +1,96 @@
-# StandOut — DESIGN.md
+# candid — DESIGN.md
 
-> Design-system source of truth for StandOut, a guided, privacy-first CV builder.
-> Inspired by `awesome-design-md` (semantic tokens, restraint), `GeeQR` execution quality (privacy-first, polished, a11y), and the warm editorial clarity of the Manus/Candid reference (soft paper, terracotta accent, generous whitespace). StandOut keeps its **own** ink-navy + warm-stone identity.
+> Exact design-system specification for candid, a calm, guided, privacy-first CV builder.
+> Directly copied from the Candid reference (`https://manus.im/share/rwO5d1Wq83SaD0jk6cwkHD`): warm stone paper (`#f5f5f0`), rich deep teal action (`#206062`), vibrant warm coral accent (`#e9795b`), editorial serif italic display accent, and precision document typography.
 
 ---
 
 ## 1. Product Personality
 
-**Keywords:** trustworthy · warm · editorial · calm · slightly premium
+**Keywords:** calm · editorial · trustworthy · warm · crafted · honest
 
-StandOut is career-critical. The UI must feel like a serious document tool — not a marketing toy, not a cold admin dashboard.
+candid is designed as a calm, confident document tool for career-critical work.
 
-- **Trustworthy over playful.** No giant emojis, no meme copy.
-- **Warm over cold.** Warm stone paper (`#fdfcfa`) instead of cold gray, soft shadows, editorial serif for display. Feels like a well-made paper product.
-- **Calm over loud.** Muted surfaces, generous whitespace, small confident type. Color is for meaning, not decoration.
-- **Precise over generic.** Every label and helper answers *why*.
-
-If GeeQR is “confident utility,” StandOut is “quiet, editorial confidence” — closer to Linear/Notion restraint with a touch of *Candid/Manus* warmth.
+- **Calm over loud.** Soft paper canvas (`#f5f5f0`), generous whitespace, no aggressive upsells, no distracting banner noise.
+- **Warm over cold.** Warm sage-stone paper instead of clinical gray; human coral accents; dark charcoal pine text instead of stark jet-black.
+- **Editorial precision.** Modern geometric sans (`Plus Jakarta Sans`) paired with an elegant, expressive serif italic (`Newsreader`) in the hero headline.
+- **Honest privacy.** No login required; document data lives in the user's browser `localStorage`; PDF exports directly through the browser print engine with selectable vector text.
 
 ---
 
-## 2. Brand & Color
+## 2. Brand & Color Palette
 
-### 2.1 Brand Ink + Warm Accent
+### 2.1 Core Palette
 
-Warm editorial palette — ink for authority, terracotta for humanity (the Manus reference uses a similarly warm, paper-centric palette).
+- **Primary Teal (Action & Brand):** `#206062`  
+  - Hover: `#1b5355`
+  - Pressed: `#17484a`
+  - Soft fill: `#e8f1f0`
+  - Ring: `rgba(32, 96, 98, 0.20)`
+  - Used for: Primary CTA buttons, italic headline accent (`what you’re trying to achieve`), active stepper states, section indicators.
 
-- `--brand: #12213a`  — deep ink (links, selected, primary actions)
-- `--brand-strong: #0e1a2e` — pressed
-- `--brand-soft: #eef2f8` — subtle selected fill
-- `--accent: #b65a2a` — restrained terracotta (eyebrow bar, step numeral, creative template bar). Never large fills.
-- `--accent-soft: #fdf0e6`
+- **Warm Coral (Terracotta Accent):** `#e9795b`  
+  - Line accent: `#ed9e88`
+  - Strong: `#d96543`
+  - Soft fill: `#fbf0eb`
+  - Used for: Logo background, hero eyebrow dot & text, vertical accent bar, CV subtitle role, company names on CV, `✦` callout star.
 
-Dark inverts carefully:
-- `--brand: #9bb6ff`
-- `--brand-soft: rgba(155,182,255,0.14)`
+### 2.2 Surfaces (Light)
 
-### 2.2 Surfaces (Light) — warm, not cold
-
-- `--bg: #fdfcfa` — warm paper app canvas (with subtle radial glow)
-- `--surface: #ffffff` — cards, editor
-- `--surface-2: #f7f3ee` — inset, preview wrap, empty states
-- `--surface-3: #efe9e0` — dividers
-- `--paper: #ffffff` — CV document itself (always light)
+- `--bg: #f5f5f0` — warm stone paper canvas
+- `--surface: #ffffff` — cards, editor panels, sheets
+- `--surface-2: #eeede6` — inset areas, preview wrap, stepper track
+- `--surface-3: #e2e0d8` — subtle dividers and progress backgrounds
+- `--paper: #ffffff` — CV document sheet itself
 
 ### 2.3 Surfaces (Dark)
 
-- `--bg: #0f141b`
-- `--surface: #161e2d`
-- `--surface-2: #1c2436`
-- `--surface-3: #222e44`
+- `--bg: #141a1a` — deep dark pine-slate
+- `--surface: #1c2424` — dark cards
+- `--surface-2: #232d2d` — inset preview wrapper
+- `--surface-3: #2b3636` — dividers
+- `--brand: #368e91` — crisp luminous teal for dark contrast
+- `--accent: #f08b71` — luminous warm coral
 
-### 2.4 Text
+### 2.4 Typography & Text
 
-- Light: `--text: #1c1917` (stone 900), `--text-2: #57534e`, `--text-3: #a8a29e`
-- Dark: `--text: #eef2f8`, `--text-2: #a8b3c6`, `--text-3: #7a8599`
+- Light:
+  - Primary text: `#1b2424` (deep pine-charcoal)
+  - Secondary text: `#525866` (muted slate gray)
+  - Tertiary / helper: `#8a909d`
+- Dark:
+  - Primary text: `#f0f3f3`
+  - Secondary text: `#9ba8a8`
+  - Tertiary / helper: `#6b7878`
 
-### 2.5 Borders & States
+### 2.5 Borders & Shadows
 
-- Light: `--border: #e7e0d6`, `--border-strong: #d6cbb8`, `--border-soft: #f1ebe3`
-- Dark: `--border: rgba(255,255,255,0.08)`, `--border-strong: rgba(255,255,255,0.14)`
-- Success/Warning/Error as before, but warm-tinted rings
-- **Do:** 1px border + soft shadow for elevation
-- **Don't:** heavy drops or neon glows
-
-### 2.6 Shadows — warm, soft
-
-- `--shadow-sm: 0 1px 2px rgba(28,25,23,0.06)`
-- `--shadow-md: 0 8px 24px rgba(28,25,23,0.08)`
-- `--shadow-lg: 0 18px 48px rgba(28,25,23,0.12)`
-- `--shadow-paper: 0 2px 12px rgba(28,25,23,0.07), 0 12px 40px rgba(28,25,23,0.10)`
-- Header glass: `rgba(253,252,250,0.88)` with `blur(14px)`
+- Border: `#e2e0d8` (light warm gray)
+- Border strong: `#cfccc2`
+- Shadow sm: `0 1px 2px rgba(27, 36, 36, 0.04), 0 1px 3px rgba(27, 36, 36, 0.03)`
+- Shadow md: `0 4px 16px rgba(27, 36, 36, 0.06), 0 1px 3px rgba(27, 36, 36, 0.04)`
+- Shadow paper: `0 10px 30px rgba(27, 36, 36, 0.06), 0 1px 3px rgba(27, 36, 36, 0.04)`
 
 ---
 
 ## 3. Typography
 
-### 3.1 Families
-
-- **Sans (UI):** `Inter` — forms, body, controls
-- **Serif (Display/CV):** `Newsreader` — hero titles, CV headings, section titles. Editorial premium without academic stiffness.
-- **Mono:** `JetBrains Mono` — dates, locations, metadata only
-
-### 3.2 Scale
-
-- `--text-xs: 0.72rem`, `--text-sm: 0.875rem`, `--text-base: 0.9375rem`, `--text-md: 1rem`
-- `--text-xl: 1.375rem`, `--text-2xl: 1.75rem`, `--text-3xl: clamp(2.2rem, 1.8rem + 2.4vw, 3.15rem)` — hero display
-- Line-height: `1.60` body, `1.08` display. Letter-spacing: `-0.02em` display, `-0.025em` hero
-
-### 3.3 Type Rules
-
-- **Do:** Newsreader 600 for display, Inter 600 for controls, 400 for body
-- **Don't:** extra-bold UI
-- **Do:** All-caps 11px tracking 0.11em for eyebrows
-- **Don't:** serif in form controls
+- **UI Sans:** `Plus Jakarta Sans`, `Inter`, system-ui — geometric, warm curves, tight tracking on headings (`-0.03em`).
+- **Editorial Serif:** `Newsreader` (italic) — used selectively for emotional accent emphasis in display headings.
+- **Monospace:** `JetBrains Mono` — dates, locations, technical tags.
 
 ---
 
-## 4. Spacing & Layout
+## 4. Components & Geometry
 
-Base 4px. Stack `4/8/12/16/20/24/32/40/64`.
-
-- `--max: 72rem`, `--max-narrow: 44rem`, `--header-h: 4.25rem`
-- Radius softer: `--radius-sm: 8px`, `--radius-md: 12px`, `--radius-lg: 16px`, `--radius-xl: 22px`, `--radius-full: 999px` — editorial roundness from Manus reference
-- CV paper radius `12px` in preview, `0` in print
-
-**Grid:**
-- Marketing: centered container, 16px gutters mobile, 28px desktop
-- Builder: 560px editor + `1fr` preview ≥1024px, otherwise tabs
-
----
-
-## 5. Components
-
-### 5.1 Buttons — pill, softer
-
-- **Primary:** filled ink, 42–48px, `999px` radius, `0 2px 10px rgba(18,33,58,0.12)` shadow, hover lifts
-- **Secondary:** white with warm border, same height
-- **Ghost:** text only
-- **Destructive:** outlined red for Delete
-
-### 5.2 Cards
-
-White, 1px warm border, `16px` radius, `shadow-sm`. Selected: `1.5px solid var(--brand)` + `#eef2f8` fill. Hover lifts 1px.
-
-### 5.3 Inputs
-
-- 44px height, 12px radius, warm border, white bg
-- Focus: ink border + 3px `#eef2f8` ring
-- Error: red border + soft ring
-- Helper 13px stone-500
-
-### 5.4 Choice Cards (purpose/industry etc.)
-
-Large radio-cards, 16px radius, 38px icon, warm bg. Checked: ink border + ` #eef2f8` fill + ink icon with white check. Hover: slight lift to `surface-2`.
-
-### 5.5 Tags
-
-Pill, 11px uppercase tracking 0.06em, warm border
-
-### 5.6 Elevation
-
-- Cards `shadow-sm`
-- Preview paper `shadow-paper`
-- Header translucent, no glassmorphism elsewhere
-
----
-
-## 6. CV Document — always light paper
-
-A4 proportions scaled, warm paper rules (`#1c1917` + stone muted + single terracotta accent per template). Margins 14–18mm, 9–10pt body, 1px hairlines `#e7e0d6`.
-
----
-
-## 7. Motion
-
-- `--ease: cubic-bezier(0.22,1,0.36,1)`
-- `--dur-fast: 140ms`, `--dur: 220ms`, `--dur-slow: 360ms`
-- No typewriter preview; immediate update; respect `prefers-reduced-motion`
-
----
-
-## 8. Responsive & A11y
-
-- Mobile-first, 44px targets, no scroll at 320px
-- Builder tabs on mobile, split sticky on desktop
-- Keyboard roving, skip link, focus rings, `aria-describedby`/`aria-invalid`, color not sole signal
-
----
-
-## 9. Imagery
-
-No stock handshakes. Thin-line icons (1.6px), paper texture via subtle radial gradients, thumbnails are miniature real CVs.
-
----
-
-## 10. Do / Don't
-
-| Do | Don't |
-|---|---|
-| Warm, honest helper text | Placeholder as label |
-| Real empty states | Blank white space |
-| One primary CTA per section | Three competing CTAs |
-| Sentence case | Title Case buttons |
-| Honest privacy claims | “We never see your data” while loading fonts — document it |
-| Progressive disclosure | 50 fields on one page |
-
----
-
-## 11. Implementation
-
-- Tokens in `src/styles/tokens.css` — single source
-- No inline colors, only CSS vars
-- Dark via `html.dark`, persisted `standout:theme`
-- Templates isolate document colors from app theme
-- Respect reduced-motion
-
-*This revision leans warm-editorial, learning from the Manus/Candid reference’s paper-centric, terracotta-accented, generously spaced aesthetic — while keeping StandOut’s ink-navy authority.*
+- **Buttons:** Clean rounded rectangles with `border-radius: 8px` (not 999px pills).
+- **Cards:** `border-radius: 12px`, 1px solid `#e2e0d8`, subtle elevation.
+- **Inputs:** `border-radius: 8px`, 42px min-height, focus border `#206062` + 3px soft teal ring.
+- **Logo Mark:** 32x32 rounded square tilted -5deg with fill `#e9795b` and 3 vertical white pill bars.
+- **Hero Document Visual:** Stacked multi-sheet paper effect with circular backdrop (`#eae7df`) and pointer annotations.
+- **Document Layout (Maya Chen):**
+  - Left avatar badge in pale teal `#dce8e6`
+  - Name in bold sans-serif `#111827`
+  - Subtitle role in coral `#e9795b` uppercase tracking
+  - Solid 1.5px horizontal dividing rule
+  - Clean pill skill tags with 1px border
