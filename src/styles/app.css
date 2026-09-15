@@ -251,6 +251,17 @@ html.dark .hero-sheet-middle { background: #2d2625; }
 }
 .hero-sheet-front * { color: #111827; }
 
+@media (max-width: 600px) {
+  .hero { padding: 2.2rem 0 2rem; }
+  .hero-grid { gap: 2rem; }
+  .hero-visual-wrap { padding: 1rem 0; }
+  .hero-visual-backdrop { width: 280px; height: 280px; }
+  .hero-paper-stack { max-width: 310px; }
+  .hero-sheet-front { padding: 16px 16px 14px; font-size: 8px; }
+  .cv-hero-name { font-size: 16px !important; }
+  .cv-hero-avatar { width: 28px !important; height: 28px !important; font-size: 11px !important; }
+}
+
 /* hero doc inside */
 .cv-hero-doc-header {
   display: grid;

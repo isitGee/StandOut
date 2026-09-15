@@ -16,33 +16,33 @@ export function PersonalStep({ cv, updatePersonal }) {
       <div className="helper">This is the header of your CV. Keep it concise — hiring managers scan this first.</div>
       <div style={{ display:"grid", gap:"1rem", gridTemplateColumns: "1fr 1fr" }}>
         <Field label="Full name" htmlFor="fullName" error={!p.fullName && touched.fullName ? "Please enter your full name." : null}>
-          <TextInput id="fullName" placeholder="e.g., Amara Johnson" value={p.fullName} onChange={e=> updatePersonal({ fullName: e.target.value })} onBlur={()=> setTouched(s=> ({...s, fullName:true}))} aria-invalid={!!(!p.fullName && touched.fullName)} />
+          <TextInput id="fullName" placeholder="Maya Chen" value={p.fullName} onChange={e=> updatePersonal({ fullName: e.target.value })} onBlur={()=> setTouched(s=> ({...s, fullName:true}))} aria-invalid={!!(!p.fullName && touched.fullName)} />
         </Field>
-        <Field label="Professional headline" hint="e.g., Business Graduate — Operations & Data" htmlFor="headline" optional>
-          <TextInput id="headline" placeholder="Your title or focus" value={p.headline} onChange={e=> updatePersonal({ headline: e.target.value })} />
+        <Field label="Professional headline" hint="e.g., Lead Product Designer & Design Strategist" htmlFor="headline" optional>
+          <TextInput id="headline" placeholder="Lead Product Designer" value={p.headline} onChange={e=> updatePersonal({ headline: e.target.value })} />
         </Field>
       </div>
 
       <div style={{ display:"grid", gap:"1rem", gridTemplateColumns: "1fr 1fr" }}>
         <Field label="Email" htmlFor="email" hint="We’ll never share it. Used only on your CV." error={emailErr}>
-          <TextInput id="email" type="email" placeholder="name@example.com" value={p.email} onChange={e=> updatePersonal({ email: e.target.value })} onBlur={()=> setTouched(s=> ({...s,email:true}))} aria-invalid={!!emailErr} aria-describedby="email-hint" />
+          <TextInput id="email" type="email" placeholder="maya.chen@designcraft.io" value={p.email} onChange={e=> updatePersonal({ email: e.target.value })} onBlur={()=> setTouched(s=> ({...s,email:true}))} aria-invalid={!!emailErr} aria-describedby="email-hint" />
         </Field>
         <Field label="Phone" htmlFor="phone" optional error={phoneErr}>
-          <TextInput id="phone" placeholder="+44 7700 900000" value={p.phone} onChange={e=> updatePersonal({ phone: e.target.value })} onBlur={()=> setTouched(s=> ({...s,phone:true}))} aria-invalid={!!phoneErr} />
+          <TextInput id="phone" placeholder="+44 7700 900 128" value={p.phone} onChange={e=> updatePersonal({ phone: e.target.value })} onBlur={()=> setTouched(s=> ({...s,phone:true}))} aria-invalid={!!phoneErr} />
         </Field>
       </div>
 
       <div style={{ display:"grid", gap:"1rem", gridTemplateColumns: "1fr 1fr" }}>
         <Field label="Location" hint="City and country is usually enough" htmlFor="location" optional>
-          <TextInput id="location" placeholder="Leeds, United Kingdom" value={p.location} onChange={e=> updatePersonal({ location: e.target.value })} />
+          <TextInput id="location" placeholder="London, UK (open to remote)" value={p.location} onChange={e=> updatePersonal({ location: e.target.value })} />
         </Field>
         <Field label="Website / Portfolio" htmlFor="website" optional error={webErr}>
-          <TextInput id="website" placeholder="yourname.com" value={p.website} onChange={e=> updatePersonal({ website: e.target.value })} onBlur={()=> setTouched(s=> ({...s,website:true}))} aria-invalid={!!webErr} />
+          <TextInput id="website" placeholder="mayachen.design" value={p.website} onChange={e=> updatePersonal({ website: e.target.value })} onBlur={()=> setTouched(s=> ({...s,website:true}))} aria-invalid={!!webErr} />
         </Field>
       </div>
 
       <Field label="LinkedIn" htmlFor="linkedin" optional error={linkedErr}>
-        <TextInput id="linkedin" placeholder="linkedin.com/in/yourname" value={p.linkedin} onChange={e=> updatePersonal({ linkedin: e.target.value })} onBlur={()=> setTouched(s=> ({...s,linkedin:true}))} aria-invalid={!!linkedErr} />
+        <TextInput id="linkedin" placeholder="linkedin.com/in/mayachen" value={p.linkedin} onChange={e=> updatePersonal({ linkedin: e.target.value })} onBlur={()=> setTouched(s=> ({...s,linkedin:true}))} aria-invalid={!!linkedErr} />
       </Field>
     </div>
   );
@@ -58,7 +58,7 @@ export function SummaryStep({ cv, updatePersonal }) {
           : "A short introduction describing who you are, what you do, and what you’re looking for. Keep it to 2–4 lines."}
       </div>
       <Field label="Professional summary" hint={`${cv.personal.summary.length} characters — aim for 200–400.`} htmlFor="summary">
-        <TextArea id="summary" rows={5} placeholder={isStudent ? "Second-year Computer Science student with projects in..." : "Operations analyst with 2 years experience..."} value={cv.personal.summary} onChange={e=> updatePersonal({ summary: e.target.value })} />
+        <TextArea id="summary" rows={5} placeholder={isStudent ? "Second-year Computer Science student with projects in..." : "Product designer with 6+ years of experience leading 0-to-1 web applications, scalable design systems, and cross-functional teams across health-tech and fintech."} value={cv.personal.summary} onChange={e=> updatePersonal({ summary: e.target.value })} />
       </Field>
       <div className="helper" style={{ background:"var(--surface-2)" }}>
         Tip: Write in plain language. We don’t invent achievements — use your own words. You can refine the wording later.
@@ -99,36 +99,36 @@ export function EducationStep({ cv, setCV }) {
         <div key={ed.id} className="entry-card">
           <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }}>
             <Field label="School / University" htmlFor={`ed-school-${ed.id}`}>
-              <TextInput id={`ed-school-${ed.id}`} value={ed.school} onChange={e=> update(ed.id, { school: e.target.value })} placeholder="University of Leeds" />
+              <TextInput id={`ed-school-${ed.id}`} value={ed.school} onChange={e=> update(ed.id, { school: e.target.value })} placeholder="University of Bath" />
             </Field>
             <Field label="Degree" htmlFor={`ed-degree-${ed.id}`}>
-              <TextInput id={`ed-degree-${ed.id}`} value={ed.degree} onChange={e=> update(ed.id, { degree: e.target.value })} placeholder="BSc Business Management" />
+              <TextInput id={`ed-degree-${ed.id}`} value={ed.degree} onChange={e=> update(ed.id, { degree: e.target.value })} placeholder="BSc (Hons) Interactive Media & Design" />
             </Field>
           </div>
           <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }}>
             <Field label="Field of study" optional htmlFor={`ed-field-${ed.id}`}>
-              <TextInput id={`ed-field-${ed.id}`} value={ed.field} onChange={e=> update(ed.id, { field: e.target.value })} placeholder="Business" />
+              <TextInput id={`ed-field-${ed.id}`} value={ed.field} onChange={e=> update(ed.id, { field: e.target.value })} placeholder="Human-Computer Interaction" />
             </Field>
             <Field label="Location" optional htmlFor={`ed-loc-${ed.id}`}>
-              <TextInput id={`ed-loc-${ed.id}`} value={ed.location} onChange={e=> update(ed.id, { location: e.target.value })} placeholder="Leeds, UK" />
+              <TextInput id={`ed-loc-${ed.id}`} value={ed.location} onChange={e=> update(ed.id, { location: e.target.value })} placeholder="Bath, UK" />
             </Field>
           </div>
           <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr 1fr" }}>
             <Field label="Start" hint="YYYY-MM" htmlFor={`ed-start-${ed.id}`}>
-              <TextInput id={`ed-start-${ed.id}`} value={ed.startDate} onChange={e=> update(ed.id,{ startDate:e.target.value })} placeholder="2021-09" />
+              <TextInput id={`ed-start-${ed.id}`} value={ed.startDate} onChange={e=> update(ed.id,{ startDate:e.target.value })} placeholder="2016-09" />
             </Field>
             <Field label="End" hint={ed.current? "Present" : "YYYY-MM"} htmlFor={`ed-end-${ed.id}`}>
-              <TextInput id={`ed-end-${ed.id}`} value={ed.endDate} onChange={e=> update(ed.id,{ endDate:e.target.value })} placeholder="2024-06" disabled={ed.current} />
+              <TextInput id={`ed-end-${ed.id}`} value={ed.endDate} onChange={e=> update(ed.id,{ endDate:e.target.value })} placeholder="2020-06" disabled={ed.current} />
             </Field>
             <label style={{ display:"flex", gap:"0.5rem", alignItems:"center", marginTop:"1.4rem", fontSize:"0.85rem" }}>
               <input type="checkbox" checked={ed.current} onChange={e=> update(ed.id,{ current:e.target.checked })} /> Currently studying
             </label>
           </div>
           <Field label="Description" optional htmlFor={`ed-desc-${ed.id}`} hint="Grade, honours, dissertation, relevant coursework">
-            <TextArea id={`ed-desc-${ed.id}`} value={ed.description} onChange={e=> update(ed.id,{ description:e.target.value })} placeholder="First-Class Honours. Dissertation: ..." rows={2} />
+            <TextArea id={`ed-desc-${ed.id}`} value={ed.description} onChange={e=> update(ed.id,{ description:e.target.value })} placeholder="First-Class Honours. Major project on accessible multi-brand design systems." rows={2} />
           </Field>
           <Field label="Grade" optional htmlFor={`ed-grade-${ed.id}`}>
-            <TextInput id={`ed-grade-${ed.id}`} value={ed.grade} onChange={e=> update(ed.id,{ grade:e.target.value })} placeholder="First Class / 3.8 GPA" />
+            <TextInput id={`ed-grade-${ed.id}`} value={ed.grade} onChange={e=> update(ed.id,{ grade:e.target.value })} placeholder="First Class Honours (1st)" />
           </Field>
           <div className="entry-actions">
             <button className="btn btn-ghost btn-small" onClick={()=> move(ed.id,-1)} type="button">↑ Move up</button>
@@ -174,28 +174,28 @@ export function ExperienceStep({ cv, setCV }) {
         <div key={exp.id} className="entry-card" id="exp-skip">
           <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }}>
             <Field label="Job title" htmlFor={`ex-title-${exp.id}`}>
-              <TextInput id={`ex-title-${exp.id}`} value={exp.title} onChange={e=> update(exp.id,{ title:e.target.value })} placeholder="Operations Intern" />
+              <TextInput id={`ex-title-${exp.id}`} value={exp.title} onChange={e=> update(exp.id,{ title:e.target.value })} placeholder="Lead Product Designer" />
             </Field>
             <Field label="Company / Organisation" htmlFor={`ex-company-${exp.id}`}>
-              <TextInput id={`ex-company-${exp.id}`} value={exp.company} onChange={e=> update(exp.id,{ company:e.target.value })} placeholder="Northbridge Retail" />
+              <TextInput id={`ex-company-${exp.id}`} value={exp.company} onChange={e=> update(exp.id,{ company:e.target.value })} placeholder="Northstar Labs" />
             </Field>
           </div>
           <Field label="Location" optional htmlFor={`ex-loc-${exp.id}`}>
-            <TextInput id={`ex-loc-${exp.id}`} value={exp.location} onChange={e=> update(exp.id,{ location:e.target.value })} placeholder="Leeds, UK" />
+            <TextInput id={`ex-loc-${exp.id}`} value={exp.location} onChange={e=> update(exp.id,{ location:e.target.value })} placeholder="London, UK" />
           </Field>
           <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr 1fr" }}>
             <Field label="Start" htmlFor={`ex-start-${exp.id}`}>
-              <TextInput id={`ex-start-${exp.id}`} value={exp.startDate} onChange={e=> update(exp.id,{ startDate:e.target.value })} placeholder="2023-06" />
+              <TextInput id={`ex-start-${exp.id}`} value={exp.startDate} onChange={e=> update(exp.id,{ startDate:e.target.value })} placeholder="2021-03" />
             </Field>
             <Field label="End" htmlFor={`ex-end-${exp.id}`}>
-              <TextInput id={`ex-end-${exp.id}`} value={exp.endDate} onChange={e=> update(exp.id,{ endDate:e.target.value })} placeholder="2023-08" disabled={exp.current} />
+              <TextInput id={`ex-end-${exp.id}`} value={exp.endDate} onChange={e=> update(exp.id,{ endDate:e.target.value })} placeholder="Present" disabled={exp.current} />
             </Field>
             <label style={{ display:"flex", gap:"0.5rem", alignItems:"center", marginTop:"1.4rem", fontSize:"0.85rem" }}>
               <input type="checkbox" checked={exp.current} onChange={e=> update(exp.id,{ current:e.target.checked })} /> I currently work here
             </label>
           </div>
           <Field label="Description" optional htmlFor={`ex-desc-${exp.id}`} hint="Optional one-line summary">
-            <TextInput id={`ex-desc-${exp.id}`} value={exp.description} onChange={e=> update(exp.id,{ description:e.target.value })} placeholder="Brief context about the role" />
+            <TextInput id={`ex-desc-${exp.id}`} value={exp.description} onChange={e=> update(exp.id,{ description:e.target.value })} placeholder="Design system lead across multi-platform clinical products" />
           </Field>
           <Field label="Key achievements / responsibilities" hint="One per line. Start with a verb. Focus on impact.">
             <div style={{ display:"grid", gap:"0.5rem" }}>
@@ -208,7 +208,7 @@ export function ExperienceStep({ cv, setCV }) {
                       arr[idx]=e.target.value;
                       update(exp.id,{ bullets: arr });
                     }}
-                    placeholder="Built an inventory tracker used by 12 staff; cut stock-check time by 3 hours"
+                    placeholder="Led 0-to-1 design system adopted by 18 engineering teams, reducing UI defect rates by 42%"
                     style={{ flex:1 }}
                   />
                   <button className="btn btn-ghost btn-small" onClick={()=> {
@@ -251,28 +251,28 @@ export function ProjectsStep({ cv, setCV }) {
         <div key={pr.id} className="entry-card">
           <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }}>
             <Field label="Project name" htmlFor={`pr-name-${pr.id}`}>
-              <TextInput id={`pr-name-${pr.id}`} value={pr.name} onChange={e=> update(pr.id,{ name:e.target.value })} placeholder="Campus Event Finder" />
+              <TextInput id={`pr-name-${pr.id}`} value={pr.name} onChange={e=> update(pr.id,{ name:e.target.value })} placeholder="Pulse Design System" />
             </Field>
             <Field label="Link" optional htmlFor={`pr-link-${pr.id}`}>
-              <TextInput id={`pr-link-${pr.id}`} value={pr.link} onChange={e=> update(pr.id,{ link:e.target.value })} placeholder="github.com/you/project" />
+              <TextInput id={`pr-link-${pr.id}`} value={pr.link} onChange={e=> update(pr.id,{ link:e.target.value })} placeholder="mayachen.design/pulse" />
             </Field>
           </div>
           <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }}>
             <Field label="Your role" optional htmlFor={`pr-role-${pr.id}`}>
-              <TextInput id={`pr-role-${pr.id}`} value={pr.role} onChange={e=> update(pr.id,{ role:e.target.value })} placeholder="Builder, Designer..." />
+              <TextInput id={`pr-role-${pr.id}`} value={pr.role} onChange={e=> update(pr.id,{ role:e.target.value })} placeholder="Lead Designer & Architect" />
             </Field>
             <Field label="Technologies" optional htmlFor={`pr-tech-${pr.id}`}>
-              <TextInput id={`pr-tech-${pr.id}`} value={pr.technologies} onChange={e=> update(pr.id,{ technologies:e.target.value })} placeholder="React, Firebase, Tailwind" />
+              <TextInput id={`pr-tech-${pr.id}`} value={pr.technologies} onChange={e=> update(pr.id,{ technologies:e.target.value })} placeholder="Figma, React, Storybook, Design Tokens" />
             </Field>
           </div>
           <Field label="Description" htmlFor={`pr-desc-${pr.id}`}>
-            <TextArea id={`pr-desc-${pr.id}`} value={pr.description} onChange={e=> update(pr.id,{ description:e.target.value })} placeholder="What you built and why it matters" rows={2} />
+            <TextArea id={`pr-desc-${pr.id}`} value={pr.description} onChange={e=> update(pr.id,{ description:e.target.value })} placeholder="Open-source multi-brand design token system and component library" rows={2} />
           </Field>
           <Field label="Highlights" hint="One per line (optional)">
             <div style={{ display:"grid", gap:"0.5rem" }}>
               {(pr.bullets || [""]).map((b, idx)=> (
                 <div key={idx} style={{ display:"flex", gap:"0.5rem" }}>
-                  <TextInput value={b} onChange={e=> { const arr=[...(pr.bullets||[])]; arr[idx]=e.target.value; update(pr.id,{ bullets:arr }); }} placeholder="200+ users during pilot" style={{ flex:1 }} />
+                  <TextInput value={b} onChange={e=> { const arr=[...(pr.bullets||[])]; arr[idx]=e.target.value; update(pr.id,{ bullets:arr }); }} placeholder="Adopted by 1,200+ active repositories with WCAG AAA accessibility contrast" style={{ flex:1 }} />
                   <button className="btn btn-ghost btn-small" onClick={()=> { const arr=[...pr.bullets]; arr.splice(idx,1); update(pr.id,{ bullets: arr.length? arr:[""] }); }} type="button">×</button>
                 </div>
               ))}
@@ -290,8 +290,8 @@ export function SkillsStep({ cv, setCV }) {
   return (
     <div style={{ display:"grid", gap:"1rem" }}>
       <div className="helper">List the skills relevant to this opportunity. Group them if helpful, or just list them separated by commas. Don’t list skills you can’t discuss in an interview.</div>
-      <Field label="Skills" hint="Separate with commas. Example: Operations, Excel (advanced), Power BI, SQL (basic), Stakeholder communication" htmlFor="skills">
-        <TextArea id="skills" value={cv.flatSkills} onChange={e=> setCV(c=> ({...c, flatSkills: e.target.value}))} placeholder="Excel (advanced), Power BI, SQL, ..." rows={3} />
+      <Field label="Skills" hint="Separate with commas. Example: Design Systems, Figma, User Research, Prototyping, React & CSS, Accessibility (WCAG 2.1)" htmlFor="skills">
+        <TextArea id="skills" value={cv.flatSkills} onChange={e=> setCV(c=> ({...c, flatSkills: e.target.value}))} placeholder="Design Systems, Figma, User Research, Prototyping, React & CSS, Accessibility (WCAG 2.1), Interaction Design" rows={3} />
       </Field>
       <div className="helper" style={{ background:"var(--surface-2)" }}>
         Tip: Tailor this section to the role. If a job description mentions specific tools, include them here only if you have experience with them — never fabricate.

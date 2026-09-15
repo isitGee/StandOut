@@ -163,7 +163,7 @@ export function Builder({ notify }) {
           </div>
 
           <div className="editor-body">
-            {active === 0 && <GoalStep cv={cv} updateTarget={updateTarget} onRecommend={applyRecommendation} />}
+            {active === 0 && <GoalStep cv={cv} updateTarget={updateTarget} onRecommend={applyRecommendation} mode={searchParams.get("mode")} />}
             {active === 1 && <PersonalStep cv={cv} updatePersonal={updatePersonal} />}
             {active === 2 && <SummaryStep cv={cv} updatePersonal={updatePersonal} />}
             {active === 3 && <EducationStep cv={cv} setCV={setCV} />}
