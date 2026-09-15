@@ -1,0 +1,47 @@
+name: Inspect Reference
+
+on:
+  push:
+    branches:
+      - arena/01a0a25c-standout
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch and inspect
+        run: |
+          python3 -c "
+          import urllib.request, json, re, base64
+
+          headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'}
+
+          img_url = 'https://private-us-east-1.manuscdn.com/sessionFile/rwO5d1Wq83SaD0jk6cwkHD/sandbox/Jfkqfi4LM2CiiOFxonjMQB_1789426369385_na1fn_bW1faW1hZ2U.webp?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvcndPNWQxV3E4M1NhRDBqazZjd2tIRC9zYW5kYm94L0pma3FmaTRMTTJDaWlPRnhvbmpNUUJfMTc4OTQyNjM2OTM4NV9uYTFmbl9iVzFmYVcxaFoyVS53ZWJwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzkwODEyODAwfX19XX0_&Key-Pair-Id=K2QY5QTL8JSY6C&Signature=MEYCIQDaJlKPVDT-TTplpVkCW-70m0Dd4eL5ZtZPIVBnkAuXJAIhALRVH3T0vf4ted96-dxYgiWzSOl-lAsUjqGfNs5P1gW~'
+          try:
+              req = urllib.request.Request(img_url, headers=headers)
+              with urllib.request.urlopen(req) as resp:
+                  data = resp.read()
+                  print('IMAGE_FETCH_SUCCESS', len(data))
+                  print('IMAGE_BASE64_START')
+                  print(base64.b64encode(data).decode('utf-8'))
+                  print('IMAGE_BASE64_END')
+          except Exception as e:
+              print('IMAGE_FETCH_ERR', e)
+
+          share_url = 'https://manus.im/share/rwO5d1Wq83SaD0jk6cwkHD'
+          try:
+              req = urllib.request.Request(share_url, headers=headers)
+              with urllib.request.urlopen(req) as resp:
+                  html = resp.read().decode('utf-8', errors='ignore')
+                  print('HTML_FETCH_SUCCESS', len(html))
+                  # find any json or interesting urls
+                  for m in re.findall(r'https?://[^\s\"\'<>]+', html):
+                      if any(k in m for k in ['manuscdn', 'pasted', 'sessionFile', 'sandbox', 'manus.space', 'api']):
+                          print('MATCH_URL:', m)
+                  # search for next_data or state
+                  for script in re.findall(r'<script[^>]*>(.*?)</script>', html, re.DOTALL):
+                      if 'pasted_content' in script or 'Candid' in script or 'sandbox' in script:
+                          print('SCRIPT_SNIPPET:', script[:500])
+          except Exception as e:
+              print('HTML_FETCH_ERR', e)
+          "
