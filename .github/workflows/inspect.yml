@@ -18,69 +18,53 @@ jobs:
       - name: Query Manus
         run: |
           python3 -c "
-          import urllib.request, json, re
+          import urllib.request, json, os
 
-          headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'}
+          headers = {
+              'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          }
           session_id = 'rwO5d1Wq83SaD0jk6cwkHD'
 
-          # test several potential endpoints
-          endpoints = [
-              f'https://api.manus.im/api/share/{session_id}',
-              f'https://api.manus.im/api/share/session/{session_id}',
-              f'https://api.manus.im/api/chat/share/{session_id}',
-              f'https://api.manus.im/api/session/share/{session_id}',
-              f'https://api.manus.im/share/{session_id}',
-              f'https://manus.im/api/share/{session_id}',
-              f'https://api.manus.im/v2/share/{session_id}',
-              f'https://api.manus.im/v1/share/{session_id}',
-              f'https://api.manus.im/api/session/{session_id}',
-              f'https://api.manus.im/api/chat/getSession?shareId={session_id}',
-              f'https://api.manus.im/api/chat/getSession?sessionId={session_id}&share=1',
+          eps = [
+              ('/api/chat/getSessionV2', {'sessionId': session_id}),
+              ('/api/chat/getSessionFilesV2', {'sessionId': session_id}),
+              ('/api/chat/getSessionOutline', {'sessionId': session_id}),
+              ('/api/chat/getCascadeJobEvents', {'sessionId': session_id}),
+              ('/api/chat/getCascadeJobDetail', {'sessionId': session_id}),
+              ('/api/v1/session/bootstrap', {'sessionId': session_id}),
+              ('/api/v1/session/bootstrap', {'shareId': session_id}),
           ]
 
-          # Also download a couple of js chunks to search for share endpoints
-          with open('reference/share_page.html') as f:
-              html = f.read()
-          chunks = list(set(re.findall(r'https://files\.manuscdn\.com/webapp/_next/static/chunks/[a-zA-Z0-9_\-\.]+\.js', html)))
-          print(f'Total unique chunks: {len(chunks)}')
+          os.makedirs('reference/api', exist_ok=True)
 
-          # Download and search in chunks for share or rwO5d1Wq
-          found_endpoints = set()
-          for chunk_url in chunks[:30]:
+          for path, payload in eps:
+              name = path.replace('/', '_')
+              # try GET with query params
+              qs = '&'.join(f'{k}={v}' for k, v in payload.items())
+              get_url = f'https://api.manus.im{path}?{qs}'
               try:
-                  req = urllib.request.Request(chunk_url, headers=headers)
-                  with urllib.request.urlopen(req, timeout=5) as resp:
-                      content = resp.read().decode('utf-8', errors='ignore')
-                      for m in re.findall(r'/api/[a-zA-Z0-9_/]+', content):
-                          if 'share' in m or 'session' in m or 'task' in m or 'chat' in m:
-                              found_endpoints.add(m)
-              except Exception:
-                  pass
-
-          print('Found API endpoints in chunks:', found_endpoints)
-          for ep in list(found_endpoints)[:20]:
-              endpoints.append(f'https://api.manus.im{ep}?shareId={session_id}')
-              endpoints.append(f'https://api.manus.im{ep}?sessionId={session_id}')
-              endpoints.append(f'https://api.manus.im{ep}/{session_id}')
-
-          results = {}
-          for ep in endpoints:
-              try:
-                  req = urllib.request.Request(ep, headers=headers)
-                  with urllib.request.urlopen(req, timeout=5) as resp:
+                  req = urllib.request.Request(get_url, headers=headers)
+                  with urllib.request.urlopen(req, timeout=10) as resp:
                       data = resp.read().decode('utf-8', errors='ignore')
-                      print('SUCCESS:', ep, len(data))
-                      results[ep] = data[:1000]
-                      with open('reference/api_result.json', 'w') as out:
-                          out.write(data)
-                      break
-              except urllib.error.HTTPError as e:
-                  print('HTTP', e.code, ep)
+                      print(f'GET {path} SUCCESS: {len(data)}')
+                      with open(f'reference/api/get{name}.json', 'w') as f:
+                          f.write(data)
               except Exception as e:
-                  print('ERR', ep, e)
+                  print(f'GET {path} ERR: {e}')
 
-          with open('reference/endpoints_tested.txt', 'w') as out:
-              out.write(json.dumps(list(found_endpoints), indent=2))
+              # try POST with json body
+              post_url = f'https://api.manus.im{path}'
+              try:
+                  req = urllib.request.Request(post_url, data=json.dumps(payload).encode('utf-8'), headers=headers)
+                  with urllib.request.urlopen(req, timeout=10) as resp:
+                      data = resp.read().decode('utf-8', errors='ignore')
+                      print(f'POST {path} SUCCESS: {len(data)}')
+                      with open(f'reference/api/post{name}.json', 'w') as f:
+                          f.write(data)
+              except Exception as e:
+                  print(f'POST {path} ERR: {e}')
           "
       - name: Commit and push
         run: |
@@ -90,6 +74,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes"
           else
-            git commit -m "chore: save api search results [skip ci]"
+            git commit -m "chore: save api data [skip ci]"
             git push
           fi
