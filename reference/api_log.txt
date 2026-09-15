@@ -1,0 +1,8 @@
+GET /api/chat/getSessionV2 ERR: HTTP Error 403: Forbidden
+POST /api/chat/getSessionV2 ERR: HTTP Error 404: Not Found
+GET /api/chat/getSessionFilesV2 ERR: HTTP Error 403: Forbidden
+POST /api/chat/getSessionFilesV2 ERR: HTTP Error 404: Not Found
+GET /api/chat/getSessionOutline ERR: HTTP Error 403: Forbidden
+POST /api/chat/getSessionOutline ERR: HTTP Error 404: Not Found
+GET /api/v1/session/bootstrap ERR: HTTP Error 404: Not Found
+POST /api/v1/session/bootstrap ERR: HTTP Error 404: Not Found
