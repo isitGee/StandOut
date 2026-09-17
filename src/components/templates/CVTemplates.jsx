@@ -37,7 +37,7 @@ function Bullets({ items }) {
   return <ul className="cv-bullets">{items.map((b, i) => <li key={i}>{b}</li>)}</ul>;
 }
 
-/* ---------- Classic (Candid Editorial ATS) ---------- */
+/* ---------- Classic (StandOut Editorial ATS) ---------- */
 export function ClassicCV({ cv }) {
   const p = cv.personal;
   const order = orderedSectionsFor(cv);

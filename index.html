@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
-    <title>candid — Create the right CV for what you're trying to achieve</title>
-    <meta name="description" content="candid helps anyone create the right CV for their actual goal — job, internship, scholarship, or freelance work. Guided, private, and free. No account required. Your data stays in your browser." />
+    <title>StandOut — Create the right CV for what you're trying to achieve</title>
+    <meta name="description" content="StandOut helps you create the right CV for your actual goal — job, internship, scholarship, or freelance work. Guided, private, and free. No account required. Your CV stays in your browser." />
     <link rel="canonical" href="https://isitgee.github.io/StandOut/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="candid — Create the right CV for what you're trying to achieve" />
-    <meta property="og:description" content="Whether you know exactly what you need or have no idea where to start, candid helps you build a CV that fits your goal. Private by design. No account needed." />
+    <meta property="og:title" content="StandOut — Create the right CV for what you're trying to achieve" />
+    <meta property="og:description" content="Whether you know exactly what you need or have no idea where to start, StandOut helps you build a CV that fits your goal. Private by design. No account needed. Your CV stays in your browser." />
     <meta property="og:url" content="https://isitgee.github.io/StandOut/" />
     <meta property="og:image" content="./og-image.svg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="candid — A calmer way to make a CV" />
-    <meta name="twitter:description" content="Create the right CV for what you're trying to achieve. Guided intake flow, live A4 preview, clean templates, real PDF export." />
+    <meta name="twitter:title" content="StandOut — Create the right CV for what you're trying to achieve" />
+    <meta name="twitter:description" content="Build a CV that stands out for the opportunity you're actually applying for. Guided, private, free. No account needed." />
     <meta name="theme-color" content="#f5f5f0" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,23 +24,23 @@
       {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "candid",
+        "name": "StandOut",
         "url": "https://isitgee.github.io/StandOut/",
-        "description": "Guided CV builder — create the right CV for your goal. Private, free, no account required.",
+        "description": "Guided CV builder — create the right CV for your goal. Private, free, no account required. Your CV stays in your browser.",
         "applicationCategory": "BusinessApplication",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-        "featureList": "ATS-friendly CVs, live preview, photo support, PDF export, guided questionnaire"
+        "featureList": "ATS-friendly CVs, live preview, photo support, PDF export, guided questionnaire, job-specific tailoring"
       }
     </script>
     <style>
-      /* critical FOUC prevention — candid warm paper */
+      /* critical FOUC prevention — StandOut warm paper */
       html { background: #f5f5f0; }
       html.dark { background: #141a1a; }
     </style>
     <script>
       (function() {
         try {
-          var t = localStorage.getItem('candid:theme') || localStorage.getItem('standout:theme');
+          var t = localStorage.getItem('standout:theme') || localStorage.getItem('candid:theme');
           var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
           var theme = t || (prefersDark ? 'dark' : 'light');
           if (theme === 'dark') document.documentElement.classList.add('dark');
@@ -53,7 +53,7 @@
     <script type="module" src="/src/main.jsx"></script>
     <noscript>
       <div style="max-width: 40rem; margin: 4rem auto; padding: 2rem; font-family: system-ui; line-height: 1.6;">
-        <h1>candid needs JavaScript</h1>
+        <h1>StandOut needs JavaScript</h1>
         <p>This CV builder runs entirely in your browser to keep your information private. Please enable JavaScript to create your CV.</p>
       </div>
     </noscript>

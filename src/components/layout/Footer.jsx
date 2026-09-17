@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CandidLogoMark } from "../Icons.jsx";
+import { StandOutLogoMark } from "../Icons.jsx";
 
 export function Footer() {
   return (
@@ -8,12 +8,12 @@ export function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <Link to="/" className="brand" style={{ display: "inline-flex", textDecoration: "none" }}>
-              <CandidLogoMark size={24} />
-              <span className="brand-text">candid</span>
+              <StandOutLogoMark size={24} />
+              <span className="brand-text">StandOut</span>
             </Link>
             <p>
-              Create the right CV for what you’re trying to achieve — guided, private, and free.
-              No account required. Your information stays in your browser.
+              Build a CV that stands out for the opportunity you're actually applying for — guided, private, and free.
+              No account required. Your CV stays in your browser.
             </p>
           </div>
 
@@ -41,9 +41,9 @@ export function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} candid. Built client-side, privacy-first.</span>
+          <span>© {new Date().getFullYear()} StandOut. Built client-side, privacy-first.</span>
           <span style={{ display: "inline-flex", gap: "0.6rem", alignItems: "center" }}>
-            <span style={{ width: 7, height: 7, borderRadius: 999, background: "var(--brand)", display: "inline-block" }} aria-hidden /> Private by design
+            <span style={{ width: 7, height: 7, borderRadius: 999, background: "var(--brand)", display: "inline-block" }} aria-hidden /> Your CV stays in your browser
           </span>
         </div>
       </div>

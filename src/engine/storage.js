@@ -12,7 +12,7 @@ export function saveCV(cv) {
 
 export function loadCV(fallback) {
   try {
-    const raw = localStorage.getItem(KEY_CANDID) || localStorage.getItem(KEY_STANDOUT);
+    const raw = localStorage.getItem(KEY_STANDOUT) || localStorage.getItem(KEY_CANDID);
     if (!raw) return fallback;
     const parsed = JSON.parse(raw);
     return {
@@ -20,6 +20,7 @@ export function loadCV(fallback) {
       ...parsed,
       personal: { ...fallback.personal, ...(parsed.personal || {}) },
       target: { ...fallback.target, ...(parsed.target || {}) },
+      tailoring: { ...(fallback.tailoring||{}), ...(parsed.tailoring || {}) },
       photo: { ...fallback.photo, ...(parsed.photo || {}) },
       design: { ...fallback.design, ...(parsed.design || {}) }
     };
@@ -44,7 +45,7 @@ export function saveTheme(theme) {
 
 export function loadTheme() {
   try {
-    return localStorage.getItem(THEME_KEY) || localStorage.getItem("standout:theme");
+    return localStorage.getItem("standout:theme") || localStorage.getItem(THEME_KEY);
   } catch {
     return null;
   }

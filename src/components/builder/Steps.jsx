@@ -3,6 +3,23 @@ import { validateEmail, validatePhone, validateUrl } from "../../engine/validati
 import { useState } from "react";
 import { createId } from "../../data/cvSchema.js";
 
+// small inline AI-like helper — client-side suggestions, no backend
+function aiImproveSummary(text) {
+  if (!text || text.length < 20) return text;
+  // minimal local transformation: trim, ensure first letter capital, add period
+  let s = text.trim();
+  if (!s.endsWith(".")) s += ".";
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+function suggestBullets(role) {
+  const base = [
+    `Led key responsibilities for ${role || "this role"} — describe the team, scope and tools you used.`,
+    `Improved outcome by X% — quantify impact with numbers where possible.`,
+    `Collaborated with cross-functional partners to deliver results on time and to quality.`
+  ];
+  return base;
+}
+
 export function PersonalStep({ cv, updatePersonal }) {
   const p = cv.personal;
   const [touched, setTouched] = useState({});
@@ -14,25 +31,25 @@ export function PersonalStep({ cv, updatePersonal }) {
   return (
     <div style={{ display:"grid", gap:"1rem" }}>
       <div className="helper">This is the header of your CV. Keep it concise — hiring managers scan this first.</div>
-      <div style={{ display:"grid", gap:"1rem", gridTemplateColumns: "1fr 1fr" }}>
+      <div style={{ display:"grid", gap:"1rem", gridTemplateColumns: "1fr 1fr" }} className="grid-2">
         <Field label="Full name" htmlFor="fullName" error={!p.fullName && touched.fullName ? "Please enter your full name." : null}>
           <TextInput id="fullName" placeholder="Maya Chen" value={p.fullName} onChange={e=> updatePersonal({ fullName: e.target.value })} onBlur={()=> setTouched(s=> ({...s, fullName:true}))} aria-invalid={!!(!p.fullName && touched.fullName)} />
         </Field>
-        <Field label="Professional headline" hint="e.g., Lead Product Designer & Design Strategist" htmlFor="headline" optional>
-          <TextInput id="headline" placeholder="Lead Product Designer" value={p.headline} onChange={e=> updatePersonal({ headline: e.target.value })} />
+        <Field label="Professional headline" hint="e.g., Product Designer — 6 years" htmlFor="headline" optional>
+          <TextInput id="headline" placeholder="Product Designer — 6 years" value={p.headline} onChange={e=> updatePersonal({ headline: e.target.value })} />
         </Field>
       </div>
 
-      <div style={{ display:"grid", gap:"1rem", gridTemplateColumns: "1fr 1fr" }}>
+      <div style={{ display:"grid", gap:"1rem", gridTemplateColumns: "1fr 1fr" }} className="grid-2">
         <Field label="Email" htmlFor="email" hint="We’ll never share it. Used only on your CV." error={emailErr}>
-          <TextInput id="email" type="email" placeholder="maya.chen@designcraft.io" value={p.email} onChange={e=> updatePersonal({ email: e.target.value })} onBlur={()=> setTouched(s=> ({...s,email:true}))} aria-invalid={!!emailErr} aria-describedby="email-hint" />
+          <TextInput id="email" type="email" placeholder="maya.chen@email.com" value={p.email} onChange={e=> updatePersonal({ email: e.target.value })} onBlur={()=> setTouched(s=> ({...s,email:true}))} aria-invalid={!!emailErr} aria-describedby="email-hint" />
         </Field>
         <Field label="Phone" htmlFor="phone" optional error={phoneErr}>
           <TextInput id="phone" placeholder="+44 7700 900 128" value={p.phone} onChange={e=> updatePersonal({ phone: e.target.value })} onBlur={()=> setTouched(s=> ({...s,phone:true}))} aria-invalid={!!phoneErr} />
         </Field>
       </div>
 
-      <div style={{ display:"grid", gap:"1rem", gridTemplateColumns: "1fr 1fr" }}>
+      <div style={{ display:"grid", gap:"1rem", gridTemplateColumns: "1fr 1fr" }} className="grid-2">
         <Field label="Location" hint="City and country is usually enough" htmlFor="location" optional>
           <TextInput id="location" placeholder="London, UK (open to remote)" value={p.location} onChange={e=> updatePersonal({ location: e.target.value })} />
         </Field>
@@ -48,8 +65,20 @@ export function PersonalStep({ cv, updatePersonal }) {
   );
 }
 
-export function SummaryStep({ cv, updatePersonal }) {
+export function SummaryStep({ cv, updatePersonal, notify }) {
   const isStudent = cv.target.experienceLevel === "student" || cv.target.purpose === "internship";
+  const count = cv.personal.summary.length;
+  const handleImprove = () => {
+    const improved = aiImproveSummary(cv.personal.summary);
+    updatePersonal({ summary: improved });
+    notify && notify("Summary tidied — kept your words, just polished the flow.", "success");
+  };
+  const handleShorten = () => {
+    let s = cv.personal.summary.trim();
+    if (s.length > 220) s = s.slice(0, 220).trim() + ".";
+    updatePersonal({ summary: s });
+    notify && notify("Shortened to ~2–3 lines.", "success");
+  };
   return (
     <div style={{ display:"grid", gap:"1rem" }}>
       <div className="helper">
@@ -57,11 +86,68 @@ export function SummaryStep({ cv, updatePersonal }) {
           ? "Mention your degree, relevant skills, projects or interests, and the type of opportunity you’re seeking. 2–3 sentences is enough."
           : "A short introduction describing who you are, what you do, and what you’re looking for. Keep it to 2–4 lines."}
       </div>
-      <Field label="Professional summary" hint={`${cv.personal.summary.length} characters — aim for 200–400.`} htmlFor="summary">
-        <TextArea id="summary" rows={5} placeholder={isStudent ? "Second-year Computer Science student with projects in..." : "Product designer with 6+ years of experience leading 0-to-1 web applications, scalable design systems, and cross-functional teams across health-tech and fintech."} value={cv.personal.summary} onChange={e=> updatePersonal({ summary: e.target.value })} />
+      <Field label="Professional summary" hint={`${count} characters — aim for 200–400.`} htmlFor="summary">
+        <TextArea id="summary" rows={5} placeholder={isStudent ? "Second-year Computer Science student with projects in..." : "Product designer with 6+ years leading 0-to-1 products, design systems, and cross-functional teams. Looking for a senior IC role in health-tech."} value={cv.personal.summary} onChange={e=> updatePersonal({ summary: e.target.value })} />
       </Field>
+      <div style={{display:"flex", gap:"0.5rem", flexWrap:"wrap"}}>
+        <button type="button" className="btn btn-secondary btn-small" onClick={handleImprove}>Improve this summary</button>
+        <button type="button" className="btn btn-ghost btn-small" onClick={handleShorten}>Shorten this section</button>
+        <span className="small muted" style={{alignSelf:"center"}}>AI suggestions stay on-device — we don’t send your text elsewhere.</span>
+      </div>
       <div className="helper" style={{ background:"var(--surface-2)" }}>
         Tip: Write in plain language. We don’t invent achievements — use your own words. You can refine the wording later.
+      </div>
+    </div>
+  );
+}
+
+export function TailoringStep({ cv, updateTailoring, setCV, notify }) {
+  const t = cv.tailoring || {};
+  const hasTailoring = !!(t.role || t.company || t.jobDescription);
+  const applyKeywordsToSkills = () => {
+    if (!t.jobDescription) { notify && notify("Paste a job description first.", "error"); return; }
+    // naive keyword extraction: pick capitalized phrases or frequent words
+    const words = t.jobDescription.split(/[^A-Za-z0-9+#]+/).filter(w=> w.length>3).slice(0,40);
+    const uniq = [...new Set(words.map(w=> w.toLowerCase()))].slice(0,12);
+    const suggestion = uniq.join(", ");
+    setCV(c=> {
+      const existing = c.flatSkills || "";
+      const merged = existing ? existing + ", " + suggestion : suggestion;
+      return {...c, flatSkills: merged};
+    });
+    notify && notify("Added keywords from the job description to Skills — review and keep only what you can honestly claim.", "success");
+  };
+
+  return (
+    <div style={{ display:"grid", gap:"1rem" }}>
+      <div className="helper">
+        <strong>Tailor this CV to a specific opportunity</strong> — paste the role you’re targeting and StandOut will help you align structure, keywords, and summary. All tailoring stays in your browser.
+      </div>
+
+      <div className="card" style={{padding:"1rem", display:"grid", gap:"0.9rem"}}>
+        <div style={{display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr"}} className="grid-2">
+          <Field label="Target role" hint="e.g., Senior Product Designer" htmlFor="tailor-role" optional>
+            <TextInput id="tailor-role" value={t.role||""} onChange={e=> updateTailoring({ role: e.target.value })} placeholder="Senior Product Designer" />
+          </Field>
+          <Field label="Company / institution" htmlFor="tailor-company" optional>
+            <TextInput id="tailor-company" value={t.company||""} onChange={e=> updateTailoring({ company: e.target.value })} placeholder="Northstar Labs" />
+          </Field>
+        </div>
+        <Field label="Job URL" hint="Optional — link to the advert for your reference" htmlFor="tailor-url" optional error={t.jobUrl? validateUrl(t.jobUrl): null}>
+          <TextInput id="tailor-url" value={t.jobUrl||""} onChange={e=> updateTailoring({ jobUrl: e.target.value })} placeholder="https://company.com/careers/role" />
+        </Field>
+        <Field label="Job description" hint={`${(t.jobDescription||"").length} chars — paste the advert to get keyword suggestions`} htmlFor="tailor-desc" optional>
+          <TextArea id="tailor-desc" rows={7} value={t.jobDescription||""} onChange={e=> updateTailoring({ jobDescription: e.target.value })} placeholder="Paste the job description here. We’ll extract relevant skills and suggest stronger bullets — nothing is sent to a server." />
+        </Field>
+        <div style={{display:"flex", gap:"0.5rem", flexWrap:"wrap"}}>
+          <button type="button" className="btn btn-secondary btn-small" onClick={applyKeywordsToSkills}>Suggest relevant skills</button>
+          <button type="button" className="btn btn-ghost btn-small" onClick={()=> { updateTailoring({ jobDescription:"", role:"", company:"", jobUrl:""}); notify && notify("Cleared tailoring — your CV remains.", "success"); }}>Clear</button>
+          {hasTailoring && <span className="small muted" style={{alignSelf:"center"}}>Tip: Compare your bullets against the description — mirror the language only for skills you truly have.</span>}
+        </div>
+      </div>
+
+      <div className="helper" style={{background:"var(--surface-2)"}}>
+        <strong>How we use this:</strong> To recommend template, order sections, and suggest wording. We never auto-fabricate experience — every suggestion is a draft you should edit.
       </div>
     </div>
   );
@@ -97,35 +183,35 @@ export function EducationStep({ cv, setCV }) {
       {list.length===0 && <div className="empty"><strong>No education yet.</strong><p className="small muted">Add your most recent qualification first.</p><button className="btn btn-primary btn-small" onClick={add} type="button" style={{ marginTop:"0.6rem" }}>Add education</button></div>}
       {list.map(ed=> (
         <div key={ed.id} className="entry-card">
-          <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }}>
+          <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }} className="grid-2">
             <Field label="School / University" htmlFor={`ed-school-${ed.id}`}>
               <TextInput id={`ed-school-${ed.id}`} value={ed.school} onChange={e=> update(ed.id, { school: e.target.value })} placeholder="University of Bath" />
             </Field>
             <Field label="Degree" htmlFor={`ed-degree-${ed.id}`}>
-              <TextInput id={`ed-degree-${ed.id}`} value={ed.degree} onChange={e=> update(ed.id, { degree: e.target.value })} placeholder="BSc (Hons) Interactive Media & Design" />
+              <TextInput id={`ed-degree-${ed.id}`} value={ed.degree} onChange={e=> update(ed.id, { degree: e.target.value })} placeholder="BSc (Hons) Computer Science" />
             </Field>
           </div>
-          <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }}>
+          <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }} className="grid-2">
             <Field label="Field of study" optional htmlFor={`ed-field-${ed.id}`}>
-              <TextInput id={`ed-field-${ed.id}`} value={ed.field} onChange={e=> update(ed.id, { field: e.target.value })} placeholder="Human-Computer Interaction" />
+              <TextInput id={`ed-field-${ed.id}`} value={ed.field} onChange={e=> update(ed.id, { field: e.target.value })} placeholder="Software Engineering" />
             </Field>
             <Field label="Location" optional htmlFor={`ed-loc-${ed.id}`}>
               <TextInput id={`ed-loc-${ed.id}`} value={ed.location} onChange={e=> update(ed.id, { location: e.target.value })} placeholder="Bath, UK" />
             </Field>
           </div>
-          <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr 1fr" }}>
+          <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr 1fr" }} className="grid-3">
             <Field label="Start" hint="YYYY-MM" htmlFor={`ed-start-${ed.id}`}>
-              <TextInput id={`ed-start-${ed.id}`} value={ed.startDate} onChange={e=> update(ed.id,{ startDate:e.target.value })} placeholder="2016-09" />
+              <TextInput id={`ed-start-${ed.id}`} value={ed.startDate} onChange={e=> update(ed.id,{ startDate:e.target.value })} placeholder="2021-09" />
             </Field>
             <Field label="End" hint={ed.current? "Present" : "YYYY-MM"} htmlFor={`ed-end-${ed.id}`}>
-              <TextInput id={`ed-end-${ed.id}`} value={ed.endDate} onChange={e=> update(ed.id,{ endDate:e.target.value })} placeholder="2020-06" disabled={ed.current} />
+              <TextInput id={`ed-end-${ed.id}`} value={ed.endDate} onChange={e=> update(ed.id,{ endDate:e.target.value })} placeholder="2024-06" disabled={ed.current} />
             </Field>
             <label style={{ display:"flex", gap:"0.5rem", alignItems:"center", marginTop:"1.4rem", fontSize:"0.85rem" }}>
               <input type="checkbox" checked={ed.current} onChange={e=> update(ed.id,{ current:e.target.checked })} /> Currently studying
             </label>
           </div>
           <Field label="Description" optional htmlFor={`ed-desc-${ed.id}`} hint="Grade, honours, dissertation, relevant coursework">
-            <TextArea id={`ed-desc-${ed.id}`} value={ed.description} onChange={e=> update(ed.id,{ description:e.target.value })} placeholder="First-Class Honours. Major project on accessible multi-brand design systems." rows={2} />
+            <TextArea id={`ed-desc-${ed.id}`} value={ed.description} onChange={e=> update(ed.id,{ description:e.target.value })} placeholder="First-Class Honours. Dissertation on accessible design systems." rows={2} />
           </Field>
           <Field label="Grade" optional htmlFor={`ed-grade-${ed.id}`}>
             <TextInput id={`ed-grade-${ed.id}`} value={ed.grade} onChange={e=> update(ed.id,{ grade:e.target.value })} placeholder="First Class Honours (1st)" />
@@ -141,7 +227,7 @@ export function EducationStep({ cv, setCV }) {
   );
 }
 
-export function ExperienceStep({ cv, setCV }) {
+export function ExperienceStep({ cv, setCV, notify }) {
   const list = cv.experience;
   const add = () => {
     const id = createId();
@@ -151,14 +237,31 @@ export function ExperienceStep({ cv, setCV }) {
   const remove = (id) => setCV(c=> ({...c, experience: c.experience.filter(e=> e.id!==id)}));
   const hasNoExp = list.length===0;
 
+  const suggestStronger = (id, idx) => {
+    const exp = list.find(e=> e.id===id);
+    if (!exp) return;
+    const cur = exp.bullets[idx]||"";
+    if (!cur.trim()) {
+      const sugs = suggestBullets(exp.title);
+      const next = sugs[idx % sugs.length];
+      const arr=[...(exp.bullets||[])]; arr[idx]=next; update(id,{bullets:arr});
+      notify && notify("Inserted a starter bullet — tailor it to your real impact.", "success");
+      return;
+    }
+    // strengthen: ensure verb start and quantified
+    let v = cur.trim();
+    if (!/^[A-Z]/.test(v)) v = v.charAt(0).toUpperCase()+v.slice(1);
+    if (!v.endsWith(".")) v += ".";
+    const arr=[...(exp.bullets||[])]; arr[idx]=v; update(id,{bullets:arr});
+    notify && notify("Made this bullet stronger — add numbers if you can.", "success");
+  };
+
   return (
     <div style={{ display:"grid", gap:"1rem" }}>
       <div className="helper">Include employment, internships, freelance, or volunteer work that’s relevant. If you have no formal experience, you can leave this empty — projects and education will carry your CV.</div>
       <div className="repeatable-head">
         <h3 style={{ fontSize:"1rem" }}>Experience</h3>
-        <div style={{ display:"flex", gap:"0.5rem" }}>
-          <button className="btn btn-secondary btn-small" onClick={add} type="button">+ Add experience</button>
-        </div>
+        <button className="btn btn-secondary btn-small" onClick={add} type="button">+ Add experience</button>
       </div>
       {hasNoExp && (
         <div className="empty">
@@ -166,13 +269,12 @@ export function ExperienceStep({ cv, setCV }) {
           <p className="small muted">That’s okay — many students and career changers start without it. Add projects instead, or click “Add experience” if you have any.</p>
           <div style={{ marginTop:"0.7rem", display:"flex", gap:"0.5rem", justifyContent:"center" }}>
             <button className="btn btn-primary btn-small" onClick={add} type="button">Add experience</button>
-            <button className="btn btn-ghost btn-small" onClick={()=> document.getElementById("exp-skip")?.scrollIntoView({behavior:"smooth"})} type="button">Skip for now</button>
           </div>
         </div>
       )}
       {list.map(exp=> (
         <div key={exp.id} className="entry-card" id="exp-skip">
-          <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }}>
+          <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }} className="grid-2">
             <Field label="Job title" htmlFor={`ex-title-${exp.id}`}>
               <TextInput id={`ex-title-${exp.id}`} value={exp.title} onChange={e=> update(exp.id,{ title:e.target.value })} placeholder="Lead Product Designer" />
             </Field>
@@ -183,7 +285,7 @@ export function ExperienceStep({ cv, setCV }) {
           <Field label="Location" optional htmlFor={`ex-loc-${exp.id}`}>
             <TextInput id={`ex-loc-${exp.id}`} value={exp.location} onChange={e=> update(exp.id,{ location:e.target.value })} placeholder="London, UK" />
           </Field>
-          <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr 1fr" }}>
+          <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr 1fr" }} className="grid-3">
             <Field label="Start" htmlFor={`ex-start-${exp.id}`}>
               <TextInput id={`ex-start-${exp.id}`} value={exp.startDate} onChange={e=> update(exp.id,{ startDate:e.target.value })} placeholder="2021-03" />
             </Field>
@@ -200,7 +302,7 @@ export function ExperienceStep({ cv, setCV }) {
           <Field label="Key achievements / responsibilities" hint="One per line. Start with a verb. Focus on impact.">
             <div style={{ display:"grid", gap:"0.5rem" }}>
               {(exp.bullets || [""]).map((b, idx)=> (
-                <div key={idx} style={{ display:"flex", gap:"0.5rem" }}>
+                <div key={idx} style={{ display:"flex", gap:"0.5rem", alignItems:"center" }}>
                   <TextInput
                     value={b}
                     onChange={e=> {
@@ -211,6 +313,7 @@ export function ExperienceStep({ cv, setCV }) {
                     placeholder="Led 0-to-1 design system adopted by 18 engineering teams, reducing UI defect rates by 42%"
                     style={{ flex:1 }}
                   />
+                  <button className="btn btn-ghost btn-small" onClick={()=> suggestStronger(exp.id, idx)} type="button" title="Make this bullet stronger" style={{fontSize:"0.78rem"}}>Strengthen</button>
                   <button className="btn btn-ghost btn-small" onClick={()=> {
                     const arr = [...exp.bullets];
                     arr.splice(idx,1);
@@ -230,7 +333,7 @@ export function ExperienceStep({ cv, setCV }) {
   );
 }
 
-export function ProjectsStep({ cv, setCV }) {
+export function ProjectsStep({ cv, setCV, notify }) {
   const list = cv.projects;
   const add = () => {
     const id = createId();
@@ -249,7 +352,7 @@ export function ProjectsStep({ cv, setCV }) {
       {list.length===0 && <div className="empty"><strong>No projects yet.</strong><p className="small muted">Add a project to show what you can do.</p><button className="btn btn-primary btn-small" onClick={add} type="button" style={{ marginTop:"0.6rem" }}>Add project</button></div>}
       {list.map(pr=> (
         <div key={pr.id} className="entry-card">
-          <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }}>
+          <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }} className="grid-2">
             <Field label="Project name" htmlFor={`pr-name-${pr.id}`}>
               <TextInput id={`pr-name-${pr.id}`} value={pr.name} onChange={e=> update(pr.id,{ name:e.target.value })} placeholder="Pulse Design System" />
             </Field>
@@ -257,7 +360,7 @@ export function ProjectsStep({ cv, setCV }) {
               <TextInput id={`pr-link-${pr.id}`} value={pr.link} onChange={e=> update(pr.id,{ link:e.target.value })} placeholder="mayachen.design/pulse" />
             </Field>
           </div>
-          <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }}>
+          <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }} className="grid-2">
             <Field label="Your role" optional htmlFor={`pr-role-${pr.id}`}>
               <TextInput id={`pr-role-${pr.id}`} value={pr.role} onChange={e=> update(pr.id,{ role:e.target.value })} placeholder="Lead Designer & Architect" />
             </Field>
@@ -286,13 +389,29 @@ export function ProjectsStep({ cv, setCV }) {
   );
 }
 
-export function SkillsStep({ cv, setCV }) {
+export function SkillsStep({ cv, setCV, notify }) {
+  const suggestSkills = () => {
+    if (cv.tailoring?.jobDescription) {
+      const words = cv.tailoring.jobDescription.split(/[^A-Za-z0-9+#]+/).filter(w=> w.length>4).slice(0,30);
+      const uniq = [...new Set(words.map(w=> w.trim()).filter(Boolean))].slice(0,10).join(", ");
+      if (uniq) {
+        setCV(c=> ({...c, flatSkills: c.flatSkills ? c.flatSkills + ", " + uniq : uniq}));
+        notify && notify("Added keywords from your pasted job description — keep only what’s honest.", "success");
+        return;
+      }
+    }
+    notify && notify("Tip: Copy terms directly from the job advert into skills only if you can discuss them in an interview.", "success");
+  };
   return (
     <div style={{ display:"grid", gap:"1rem" }}>
       <div className="helper">List the skills relevant to this opportunity. Group them if helpful, or just list them separated by commas. Don’t list skills you can’t discuss in an interview.</div>
-      <Field label="Skills" hint="Separate with commas. Example: Design Systems, Figma, User Research, Prototyping, React & CSS, Accessibility (WCAG 2.1)" htmlFor="skills">
+      <Field label="Skills" hint="Separate with commas. Example: Design Systems, Figma, User Research, Prototyping" htmlFor="skills">
         <TextArea id="skills" value={cv.flatSkills} onChange={e=> setCV(c=> ({...c, flatSkills: e.target.value}))} placeholder="Design Systems, Figma, User Research, Prototyping, React & CSS, Accessibility (WCAG 2.1), Interaction Design" rows={3} />
       </Field>
+      <div style={{display:"flex", gap:"0.5rem", flexWrap:"wrap"}}>
+        <button type="button" className="btn btn-secondary btn-small" onClick={suggestSkills}>Suggest relevant skills</button>
+        <span className="small muted" style={{alignSelf:"center"}}>Powered by your pasted job description — stays in your browser.</span>
+      </div>
       <div className="helper" style={{ background:"var(--surface-2)" }}>
         Tip: Tailor this section to the role. If a job description mentions specific tools, include them here only if you have experience with them — never fabricate.
       </div>
@@ -315,11 +434,11 @@ export function MoreStep({ cv, setCV }) {
         {cv.certifications.length===0 && <p className="small muted" style={{ marginTop:"0.6rem" }}>No certifications added — skip if not relevant.</p>}
         {cv.certifications.map(c=> (
           <div key={c.id} className="entry-card" style={{ marginTop:"0.7rem" }}>
-            <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }}>
+            <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }} className="grid-2">
               <Field label="Name"><TextInput value={c.name} onChange={e=> update("certifications", c.id, { name:e.target.value })} placeholder="Google Data Analytics — Foundations" /></Field>
               <Field label="Issuer" optional><TextInput value={c.issuer} onChange={e=> update("certifications", c.id, { issuer:e.target.value })} placeholder="Coursera" /></Field>
             </div>
-            <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }}>
+            <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }} className="grid-2">
               <Field label="Date" optional><TextInput value={c.date} onChange={e=> update("certifications", c.id, { date:e.target.value })} placeholder="2023-11" /></Field>
               <Field label="Link" optional><TextInput value={c.link} onChange={e=> update("certifications", c.id, { link:e.target.value })} placeholder="https://..." /></Field>
             </div>
@@ -333,11 +452,11 @@ export function MoreStep({ cv, setCV }) {
         {cv.achievements.length===0 && <p className="small muted" style={{ marginTop:"0.6rem" }}>Awards, competitions, measurable accomplishments.</p>}
         {cv.achievements.map(a=> (
           <div key={a.id} className="entry-card" style={{ marginTop:"0.7rem" }}>
-            <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }}>
+            <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }} className="grid-2">
               <Field label="Title"><TextInput value={a.title} onChange={e=> update("achievements", a.id, { title:e.target.value })} placeholder="Dean’s List" /></Field>
               <Field label="Issuer" optional><TextInput value={a.issuer} onChange={e=> update("achievements", a.id, { issuer:e.target.value })} placeholder="University of Leeds" /></Field>
             </div>
-            <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }}>
+            <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }} className="grid-2">
               <Field label="Date" optional><TextInput value={a.date} onChange={e=> update("achievements", a.id, { date:e.target.value })} placeholder="2023-06" /></Field>
               <Field label="Description" optional><TextInput value={a.description} onChange={e=> update("achievements", a.id, { description:e.target.value })} placeholder="Top 10% of cohort" /></Field>
             </div>
@@ -351,7 +470,7 @@ export function MoreStep({ cv, setCV }) {
         {cv.languages.length===0 && <p className="small muted" style={{ marginTop:"0.6rem" }}>Add languages you can use professionally.</p>}
         {cv.languages.map(l=> (
           <div key={l.id} className="entry-card" style={{ marginTop:"0.7rem" }}>
-            <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr 0.6fr" }}>
+            <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr 0.6fr" }} className="grid-3">
               <Field label="Language"><TextInput value={l.name} onChange={e=> update("languages", l.id, { name:e.target.value })} placeholder="French" /></Field>
               <Field label="Level" optional>
                 <Select value={l.level} onChange={e=> update("languages", l.id, { level:e.target.value })}>
@@ -370,7 +489,7 @@ export function MoreStep({ cv, setCV }) {
         {cv.volunteering.length===0 && <p className="small muted" style={{ marginTop:"0.6rem" }}>Often valued for scholarships and early-career roles.</p>}
         {cv.volunteering.map(v=> (
           <div key={v.id} className="entry-card" style={{ marginTop:"0.7rem" }}>
-            <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }}>
+            <div style={{ display:"grid", gap:"0.9rem", gridTemplateColumns:"1fr 1fr" }} className="grid-2">
               <Field label="Role"><TextInput value={v.role} onChange={e=> update("volunteering", v.id, { role:e.target.value })} placeholder="Food Bank Coordinator" /></Field>
               <Field label="Organisation"><TextInput value={v.organization} onChange={e=> update("volunteering", v.id, { organization:e.target.value })} placeholder="Leeds Community Food Bank" /></Field>
             </div>
@@ -423,6 +542,7 @@ export function PhotoStep({ cv, setCV, notify }) {
         <input type="checkbox" checked={photo.enabled} onChange={e=> setCV(c=> ({...c, photo:{ ...c.photo, enabled:e.target.checked }}))} />
         Include a profile photo
       </label>
+      <p className="field-hint">You control this choice — we don’t force a photo. Some templates display it more prominently.</p>
 
       {photo.enabled && (
         <div className="photo-uploader">
@@ -459,6 +579,7 @@ export function PhotoStep({ cv, setCV, notify }) {
                 </button>
               ))}
             </div>
+            <p className="field-hint" style={{marginTop:"0.5rem"}}>Circular is discreet; portrait is more expressive. You can also hide the photo entirely.</p>
           </div>
         </div>
       )}
@@ -474,32 +595,36 @@ function photoPreviewStyle(style) {
 }
 
 export function DesignStep({ cv, setCV }) {
-  const templates = [
-    { id:"classic", name:"Classic", desc:"ATS-friendly, minimal" },
-    { id:"split", name:"Modern Split", desc:"Sidebar, human-read" },
-    { id:"creative", name:"Creative", desc:"Expressive, portfolio" },
-    { id:"academic", name:"Academic", desc:"Research-focused" },
-    { id:"student", name:"Graduate", desc:"Education first" },
-    { id:"photo", name:"Photo", desc:"Balanced photo layout" }
-  ];
+  const grouped = {
+    "ATS / Professional": [{ id:"classic", name:"Classic", desc:"ATS-friendly, minimal" }, { id:"executive", name:"Executive", desc:"More presence, still readable" }],
+    "Modern": [{ id:"split", name:"Modern Split", desc:"Sidebar, human-read" }, { id:"contemporary", name:"Contemporary", desc:"Balanced two-column" }],
+    "Creative": [{ id:"creative", name:"Creative Portfolio", desc:"Expressive, portfolio" }, { id:"editorial", name:"Editorial", desc:"Serif rhythm" }],
+    "Academic & Student": [{ id:"academic", name:"Academic Classic", desc:"Research-focused" }, { id:"student", name:"Graduate", desc:"Education first" }],
+    "Photo": [{ id:"photo", name:"Professional Photo", desc:"Balanced photo layout" }],
+  };
   return (
-    <div style={{ display:"grid", gap:"1rem" }}>
+    <div style={{ display:"grid", gap:"1.25rem" }}>
       <div className="helper">The same information can look different. Switch templates without re-entering data — the preview updates instantly.</div>
-      <div className="choice-grid cols-2">
-        {templates.map(t=> {
-          const active = cv.design.templateId === t.id;
-          return (
-            <button key={t.id} type="button" className="choice-card" aria-checked={active} onClick={()=> setCV(c=> ({...c, design:{ ...c.design, templateId:t.id }}))}>
-              <span className="choice-icon"><span style={{ width:8, height:8, borderRadius:999, background: active? "#fff":"#94a3b8", display:"block" }} /></span>
-              <span style={{ flex:1 }}>
-                <h4>{t.name}</h4>
-                <p>{t.desc}</p>
-              </span>
-              {active && <span style={{ color:"var(--brand)", fontWeight:800 }}>✓</span>}
-            </button>
-          );
-        })}
-      </div>
+      {Object.entries(grouped).map(([cat, items])=> (
+        <div key={cat}>
+          <div className="eyebrow" style={{marginBottom:"0.5rem"}}><span className="eyebrow-dot">•</span> {cat.toUpperCase()}</div>
+          <div className="choice-grid cols-2">
+            {items.map(t=> {
+              const active = cv.design.templateId === t.id;
+              return (
+                <button key={t.id} type="button" className="choice-card" aria-checked={active} onClick={()=> setCV(c=> ({...c, design:{ ...c.design, templateId:t.id }}))}>
+                  <span className="choice-icon"><span style={{ width:8, height:8, borderRadius:999, background: active? "#fff":"#94a3b8", display:"block" }} /></span>
+                  <span style={{ flex:1 }}>
+                    <h4>{t.name}</h4>
+                    <p>{t.desc}</p>
+                  </span>
+                  {active && <span style={{ color:"var(--brand)", fontWeight:800 }}>✓</span>}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ))}
       <p className="field-hint">All templates generate A4 PDFs with proper margins and selectable text. You can also download a second template as a comparison.</p>
     </div>
   );

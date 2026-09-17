@@ -17,7 +17,7 @@ export function Examples() {
       </div>
       <h1 className="section-title" style={{ marginTop: "0.5rem" }}>Examples by use case</h1>
       <p className="section-lead" style={{ marginTop: "0.6rem" }}>
-        See how candid adapts structure, ordering, and template for different goals. Load any example in the builder and replace it with your own details.
+        See how StandOut adapts structure, ordering, and template for different goals. Load any example in the builder and replace it with your own details. Your CV stays in your browser.
       </p>
 
       <div className="template-grid" style={{ marginTop: "2rem" }}>
@@ -39,12 +39,21 @@ export function Examples() {
       </div>
 
       <div className="card" style={{ marginTop: "2rem", padding: "1.5rem" }}>
+        <h3 style={{ fontSize: "1.05rem" }}>Your CVs</h3>
+        <p className="small muted" style={{marginTop:"0.35rem"}}>StandOut saves your current CV locally in this browser. Build in the editor — the preview updates live as you type. Duplicate by copying JSON and reloading.</p>
+        <div style={{display:"flex", gap:"0.6rem", marginTop:"0.9rem", flexWrap:"wrap"}}>
+          <Link to="/builder" className="btn btn-primary btn-small">+ Create new CV</Link>
+          <Link to="/templates" className="btn btn-secondary btn-small">Explore templates</Link>
+        </div>
+      </div>
+
+      <div className="card" style={{ marginTop: "1.2rem", padding: "1.5rem" }}>
         <h3 style={{ fontSize: "1.05rem" }}>Want a tailored example?</h3>
         <p className="small muted" style={{ marginTop: "0.35rem" }}>
-          Build your CV in the editor — the preview updates live as you type. Try switching templates to see your data presented in different formats.
+          Paste a job description in the builder’s Opportunity step and see how StandOut tailors keywords and suggests stronger bullets — all on-device.
         </p>
         <Link to="/builder" className="btn btn-primary btn-small" style={{ marginTop: "0.85rem" }}>
-          Create my CV <span className="btn-arrow" aria-hidden="true">&rarr;</span>
+          Create your CV <span className="btn-arrow" aria-hidden="true">&rarr;</span>
         </Link>
       </div>
     </div>

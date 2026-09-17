@@ -14,8 +14,9 @@ export function useLocalCV() {
   const update = (patch) => setCV(c => ({ ...c, ...patch }));
   const updatePersonal = (patch) => setCV(c => ({ ...c, personal: { ...c.personal, ...patch } }));
   const updateTarget = (patch) => setCV(c => ({ ...c, target: { ...c.target, ...patch } }));
+  const updateTailoring = (patch) => setCV(c => ({ ...c, tailoring: { ...(c.tailoring||{}), ...patch } }));
   const updatePhoto = (patch) => setCV(c => ({ ...c, photo: { ...c.photo, ...patch } }));
   const updateDesign = (patch) => setCV(c => ({ ...c, design: { ...c.design, ...patch } }));
 
-  return { cv, setCV, update, updatePersonal, updateTarget, updatePhoto, updateDesign };
+  return { cv, setCV, update, updatePersonal, updateTarget, updateTailoring, updatePhoto, updateDesign };
 }
