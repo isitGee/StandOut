@@ -10,7 +10,7 @@
       <rect x="21" y="11" width="6" height="26" rx="3" fill="white" />
       <rect x="31" y="11" width="6" height="26" rx="3" fill="white" />
     </g>
-    <text x="68" y="36" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="700" font-size="36" fill="#1b2424" letter-spacing="-1">candid</text>
+    <text x="68" y="36" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="700" font-size="36" fill="#1b2424" letter-spacing="-1">StandOut</text>
   </g>
 
   <!-- Left accent vertical line -->
@@ -19,7 +19,7 @@
   <!-- Eyebrow -->
   <g transform="translate(125, 225)">
     <circle cx="6" cy="-4" r="4" fill="#e9795b" />
-    <text x="20" y="0" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="700" font-size="16" fill="#e9795b" letter-spacing="2">A CALMER WAY TO MAKE A CV</text>
+    <text x="20" y="0" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="700" font-size="16" fill="#e9795b" letter-spacing="2">PRIVATE BY DESIGN</text>
   </g>
 
   <!-- Headline -->
@@ -32,9 +32,9 @@
 
   <!-- Subtitle -->
   <text x="125" y="535" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="20" fill="#525866">
-    Whether you know exactly what you need or have no idea where to start.
+    Build a CV that stands out — guided, private, free.
   </text>
   <text x="125" y="570" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="16" font-weight="600" fill="#206062">
-    Private by design. No account needed. Live A4 preview.
+    Your CV stays in your browser. No account needed.
   </text>
 </svg>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { CandidLogoMark, IconMoon, IconSun } from "../Icons.jsx";
+import { StandOutLogoMark, IconMoon, IconSun } from "../Icons.jsx";
 
 export function Header({ theme, onToggleTheme }) {
   const [open, setOpen] = useState(false);
@@ -8,9 +8,9 @@ export function Header({ theme, onToggleTheme }) {
   return (
     <header className="site-header">
       <div className="container">
-        <Link to="/" className="brand" aria-label="candid home" onClick={() => setOpen(false)}>
-          <CandidLogoMark size={28} />
-          <span className="brand-text">candid</span>
+        <Link to="/" className="brand" aria-label="StandOut home" onClick={() => setOpen(false)}>
+          <StandOutLogoMark size={28} />
+          <span className="brand-text">StandOut</span>
         </Link>
 
         <nav className="nav-desktop" aria-label="Primary">
@@ -29,7 +29,7 @@ export function Header({ theme, onToggleTheme }) {
             {theme === "dark" ? <IconSun /> : <IconMoon />}
           </button>
           <Link to="/builder" className="btn btn-primary btn-header">
-            Create my CV <span className="btn-arrow" aria-hidden="true">&rarr;</span>
+            Create your CV <span className="btn-arrow" aria-hidden="true">&rarr;</span>
           </Link>
           <button
             className="hamburger"

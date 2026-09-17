@@ -18,6 +18,12 @@ export const emptyCV = {
     submissionType: "", // online | email | printed | portfolio | unsure
     stylePreference: "" // simple | ats | modern | creative | academic | recommend
   },
+  tailoring: {
+    role: "", // target role e.g., Senior Product Designer
+    company: "", // target company
+    jobUrl: "", // optional URL
+    jobDescription: "" // pasted description for tailoring guidance
+  },
   education: [], // { id, school, degree, field, location, startDate, endDate, current, description, grade }
   experience: [], // { id, title, company, location, startDate, endDate, current, description, bullets[] }
   projects: [], // { id, name, link, role, description, bullets[], technologies }

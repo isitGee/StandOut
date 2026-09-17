@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IconShieldCheck, IconBriefcase, IconCompass, IconCheck, IconArrowRight } from "../components/Icons.jsx";
+import { IconShieldCheck, IconBriefcase, IconCompass, IconCheck, IconTarget, IconLayers, IconFileText } from "../components/Icons.jsx";
 import { templates } from "../data/templatesRegistry.js";
 
 export function Home() {
@@ -15,7 +15,7 @@ export function Home() {
                 <div className="hero-accent-line" aria-hidden="true" />
                 <div>
                   <div className="hero-eyebrow">
-                    <span className="eyebrow-dot">•</span> A CALMER WAY TO MAKE A CV
+                    <span className="eyebrow-dot">•</span> STANDOUT — PRIVATE BY DESIGN
                   </div>
                   <h1 className="hero-title">
                     Create the right<br />
@@ -27,21 +27,27 @@ export function Home() {
               </div>
 
               <p className="hero-subtitle">
-                Whether you know exactly what you need or have no idea where to start, candid helps you build a CV that fits your goal.
+                StandOut helps you build a CV tailored to your actual goal — job, internship, scholarship, or freelance work.
+                Your information stays private, in your browser.
               </p>
 
               <div className="hero-actions">
                 <Link to="/builder" className="btn btn-primary btn-hero">
-                  Create my CV <span className="btn-arrow" aria-hidden="true">&rarr;</span>
+                  Create your CV <span className="btn-arrow" aria-hidden="true">&rarr;</span>
                 </Link>
-                <Link to="/templates" className="btn btn-secondary btn-hero">
-                  Explore templates
-                </Link>
+                <a href="#how-it-works" className="btn btn-secondary btn-hero">
+                  See how it works
+                </a>
               </div>
 
               <div className="hero-trust">
                 <IconShieldCheck className="trust-icon" />
-                <span>Private by design. No account needed.</span>
+                <span><strong>Your CV stays in your browser.</strong> No account. No upload. Free.</span>
+              </div>
+              <div className="hero-meta-row">
+                <span className="hero-meta-pill"><IconCheck style={{width:14,height:14}}/> ATS-friendly options</span>
+                <span className="hero-meta-pill"><IconCheck style={{width:14,height:14}}/> Live A4 preview</span>
+                <span className="hero-meta-pill"><IconCheck style={{width:14,height:14}}/> Photo — your choice</span>
               </div>
             </div>
 
@@ -163,8 +169,65 @@ export function Home() {
         </div>
       </section>
 
+      {/* ---------- Social proof / goals strip ---------- */}
+      <section className="section" style={{padding: "1.25rem 0", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)", background: "var(--surface)"}}>
+        <div className="container">
+          <div style={{display:"flex", gap:"1rem", flexWrap:"wrap", justifyContent:"center", alignItems:"center", color:"var(--text-2)", fontSize:"0.84rem", fontWeight:500}}>
+            <span style={{display:"inline-flex", gap:"0.35rem", alignItems:"center"}}><IconTarget style={{width:14,height:14, color:"var(--brand)"}}/> Job applications</span>
+            <span style={{opacity:0.35}}>·</span>
+            <span style={{display:"inline-flex", gap:"0.35rem", alignItems:"center"}}><IconLayers style={{width:14,height:14, color:"var(--brand)"}}/> Internships</span>
+            <span style={{opacity:0.35}}>·</span>
+            <span style={{display:"inline-flex", gap:"0.35rem", alignItems:"center"}}><IconFileText style={{width:14,height:14, color:"var(--brand)"}}/> Graduate & academic</span>
+            <span style={{opacity:0.35}}>·</span>
+            <span>Freelance & creative</span>
+            <span style={{opacity:0.35}}>·</span>
+            <span>Healthcare & technology</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------- Onboarding — What are you creating your CV for? ---------- */}
+      <section className="section" id="goals">
+        <div className="container">
+          <div className="section-head-center">
+            <div className="eyebrow">
+              <span className="eyebrow-dot">•</span> START WITH YOUR GOAL
+            </div>
+            <h2 className="section-title">What are you creating your CV for?</h2>
+            <p className="section-lead">
+              StandOut adapts its structure, ordering, and guidance to what you're actually trying to achieve — not a generic template.
+            </p>
+          </div>
+
+          <div className="goals-grid">
+            {[
+              {label:"Job application", desc:"Tailor for a specific role or company", icon:"💼"},
+              {label:"Internship", desc:"Even with limited experience", icon:"🎓"},
+              {label:"Graduate opportunity", desc:"Master's, PhD, academic", icon:"📚"},
+              {label:"Freelance work", desc:"Show projects & clients", icon:"✦"},
+              {label:"Technology", desc:"Engineering, data, product", icon:"⌁"},
+              {label:"Healthcare", desc:"Clinical, nursing, pharmacy", icon:"+"},
+              {label:"Creative role", desc:"Design, media, portfolio", icon:"◐"},
+              {label:"General CV", desc:"A strong base you can tailor later", icon:"▭"},
+            ].map(g => (
+              <Link key={g.label} to="/builder" className="goal-card">
+                <div className="goal-icon">{g.icon}</div>
+                <div>
+                  <div className="goal-label">{g.label}</div>
+                  <div className="goal-desc">{g.desc}</div>
+                </div>
+                <span className="goal-arrow" aria-hidden>→</span>
+              </Link>
+            ))}
+          </div>
+          <div style={{textAlign:"center", marginTop:"1.4rem"}}>
+            <Link to="/builder?mode=guided" className="btn btn-secondary">Not sure? Get guided help <span className="btn-arrow" aria-hidden>→</span></Link>
+          </div>
+        </div>
+      </section>
+
       {/* ---------- Start Where You Are (Two Ways In) ---------- */}
-      <section className="section">
+      <section className="section alt">
         <div className="container">
           <div className="section-head-center">
             <div className="eyebrow">
@@ -221,14 +284,31 @@ export function Home() {
       </section>
 
       {/* ---------- How It Works ---------- */}
-      <section className="section alt">
+      <section className="section" id="how-it-works">
         <div className="container">
           <div className="section-head-center">
             <div className="eyebrow">
               <span className="eyebrow-dot">•</span> HOW IT WORKS
             </div>
             <h2 className="section-title">Tell us your goal → get the right structure</h2>
-            <p className="section-lead">No CV jargon. We ask in plain language and keep every step focused.</p>
+            <p className="section-lead">A calm, progressive workflow. You always know where you are and what's next.</p>
+          </div>
+
+          <div className="workflow-strip">
+            {[
+              {n:"01", title:"Choose your goal", desc:"What you're applying for"},
+              {n:"02", title:"Add your information", desc:"Guided, no jargon"},
+              {n:"03", title:"Build your CV", desc:"Live editing"},
+              {n:"04", title:"Customize", desc:"Template & photo"},
+              {n:"05", title:"Review", desc:"ATS & clarity check"},
+              {n:"06", title:"Export", desc:"Download PDF"},
+            ].map(s => (
+              <div key={s.n} className="workflow-step">
+                <div className="workflow-num">{s.n}</div>
+                <div className="workflow-title">{s.title}</div>
+                <div className="workflow-desc">{s.desc}</div>
+              </div>
+            ))}
           </div>
 
           <div className="steps">
@@ -252,7 +332,7 @@ export function Home() {
       </section>
 
       {/* ---------- Templates Showcase ---------- */}
-      <section className="section">
+      <section className="section alt">
         <div className="container">
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", justifyContent: "space-between", alignItems: "flex-end" }}>
             <div>
@@ -261,7 +341,7 @@ export function Home() {
               </div>
               <h2 className="section-title" style={{ marginTop: "0.4rem" }}>Fewer templates, genuinely different</h2>
               <p className="section-lead" style={{ marginTop: "0.5rem" }}>
-                No 50 mediocre variations. Each template has a clear purpose — from screening systems to printed portfolios.
+                Each template has a clear purpose — from screening systems to printed portfolios. Same data, different presentation.
               </p>
             </div>
             <Link to="/templates" className="btn btn-secondary">View all templates</Link>
@@ -303,6 +383,44 @@ export function Home() {
         </div>
       </section>
 
+      {/* ---------- Editor + Preview highlight ---------- */}
+      <section className="section">
+        <div className="container">
+          <div className="editor-highlight">
+            <div>
+              <div className="eyebrow"><span className="eyebrow-dot">•</span> LIVE EDITOR</div>
+              <h2 className="section-title" style={{marginTop:"0.5rem"}}>Edit on the left. See your CV on the right.</h2>
+              <p className="section-lead" style={{marginTop:"0.6rem"}}>The editor feels like a real product — not a form. Sections are collapsible, reorderable, and the preview updates instantly as you type.</p>
+              <ul className="checklist" style={{marginTop:"1.2rem"}}>
+                <li className="check-item"><IconCheck/> Live preview with A4 proportions & shadows</li>
+                <li className="check-item"><IconCheck/> Zoom, page flow, template switching</li>
+                <li className="check-item"><IconCheck/> Photo support — circular, rounded, square, or hidden</li>
+                <li className="check-item"><IconCheck/> ATS-friendly indicator when submitting online</li>
+              </ul>
+              <Link to="/builder" className="btn btn-primary" style={{marginTop:"1.4rem"}}>Open the editor <span className="btn-arrow" aria-hidden>→</span></Link>
+            </div>
+            <div className="editor-highlight-visual">
+              <div className="editor-mock">
+                <div className="mock-sidebar">
+                  <div className="mock-nav-item active">Personal</div>
+                  <div className="mock-nav-item">Experience</div>
+                  <div className="mock-nav-item">Education</div>
+                  <div className="mock-nav-item">Skills</div>
+                  <div className="mock-nav-item">Projects</div>
+                </div>
+                <div className="mockCenter">
+                  <div className="mock-card"/>
+                  <div className="mock-card short"/>
+                </div>
+                <div className="mockPreview">
+                  <div className="mock-paper"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ---------- Privacy Section ---------- */}
       <section className="section alt">
         <div className="container">
@@ -311,18 +429,18 @@ export function Home() {
               <div className="eyebrow">
                 <span className="eyebrow-dot">•</span> PRIVACY-FIRST
               </div>
-              <h2 className="section-title" style={{ marginTop: "0.4rem" }}>Your CV belongs to you.</h2>
+              <h2 className="section-title" style={{ marginTop: "0.4rem" }}>Your CV is yours.</h2>
               <p className="section-lead" style={{ marginTop: "0.6rem" }}>
-                Create and download without creating an account. Whenever possible, your information is processed locally in your browser rather than uploaded to a server.
+                StandOut runs in your browser so your personal information can stay on your device. Create and download without creating an account.
               </p>
               <div className="checklist">
                 <div className="check-item"><IconCheck /> No account required to build or download</div>
-                <div className="check-item"><IconCheck /> CV data saved locally in this browser (you can clear it anytime)</div>
-                <div className="check-item"><IconCheck /> No backend storage of your personal CV content</div>
+                <div className="check-item"><IconCheck /> Your CV stays in your browser — not on our servers</div>
+                <div className="check-item"><IconCheck /> CV data saved locally (you can clear it anytime)</div>
                 <div className="check-item"><IconCheck /> Export is a real print-to-PDF with selectable text — not a screenshot</div>
               </div>
               <p className="small muted" style={{ marginTop: "1rem" }}>
-                We’re honest about what “private” means: candid doesn’t upload your CV to an external server. Standard hosting logs may exist at the infrastructure level. See <Link to="/privacy">Privacy Policy</Link>.
+                We’re honest about what “private” means: StandOut doesn’t upload your CV to an external server. Standard hosting logs may exist at the infrastructure level. See <Link to="/privacy">Privacy Policy</Link>.
               </p>
             </div>
 
@@ -337,8 +455,9 @@ export function Home() {
                 <li>First-time CV creator needing plain guidance</li>
               </ul>
               <Link to="/builder" className="btn btn-primary" style={{ marginTop: "1.4rem", width: "100%" }}>
-                Start building my CV
+                Create your CV
               </Link>
+              <p className="small muted" style={{textAlign:"center", marginTop:"0.6rem"}}>Free · No sign-up · Your CV stays in your browser</p>
             </div>
           </div>
         </div>
@@ -348,17 +467,17 @@ export function Home() {
       <section className="section">
         <div className="container">
           <div className="cta-banner">
-            <h2 className="section-title">Ready to build a CV that fits your goal?</h2>
+            <h2 className="section-title">Ready to build a CV that stands out?</h2>
             <p className="section-lead" style={{ marginInline: "auto", marginTop: "0.75rem" }}>
               No login, no subscriptions, no tracking. Start where you are and leave with a clean PDF in minutes.
             </p>
             <div style={{ display: "flex", gap: "0.85rem", justifyContent: "center", marginTop: "1.6rem", flexWrap: "wrap" }}>
               <Link to="/builder" className="btn btn-primary btn-large">
-                Create my CV <span className="btn-arrow" aria-hidden="true">&rarr;</span>
+                Create your CV <span className="btn-arrow" aria-hidden="true">&rarr;</span>
               </Link>
-              <Link to="/templates" className="btn btn-secondary btn-large">
-                Explore templates
-              </Link>
+              <a href="#how-it-works" className="btn btn-secondary btn-large">
+                See how it works
+              </a>
             </div>
           </div>
         </div>
